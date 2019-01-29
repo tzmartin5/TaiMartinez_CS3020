@@ -1,3 +1,12 @@
+/*
+ * Tai Martinez
+ * CS 3020
+ * Homework 1 Due 2/4/2019
+ * Program prints a simple menu based on user input 
+ * and performs selected action
+ */
+
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
