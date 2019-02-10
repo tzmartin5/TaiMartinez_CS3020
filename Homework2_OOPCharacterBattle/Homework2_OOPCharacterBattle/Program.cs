@@ -10,12 +10,36 @@ namespace Homework2_OOPCharacterBattle
     {
         static void Main(string[] args)
         {
-            // The code provided will print ‘Hello World’ to the console.
-            // Press Ctrl+F5 (or go to Debug > Start Without Debugging) to run your app.
-            Console.WriteLine("Hello World!");
-            Console.ReadKey();
+            //prompt user for character 
+            //create instances of that character using if statement 
 
-            // Go to http://aka.ms/dotnet-get-started-console to continue learning how to build a console app! 
-        }
+
+            //print player health points 
+
+
+            //give low priority to player ask what they want to do
+            //move and attack 
+            //special 
+
+            //if move and attack, how many units to move 
+            //you moved, would you like to attack y/n
+            //if not next player move 
+
+            //if yes, then 
+            //print opted to attack, attack or too far away 
+
+
+            //if special 
+            //apply special damage 
+
+            //loop until health points = 0; 
+
+
+
+
+
+
+
+        }   
     }
 }
