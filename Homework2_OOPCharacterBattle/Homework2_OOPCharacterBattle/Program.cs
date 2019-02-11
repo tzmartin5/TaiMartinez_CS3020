@@ -28,7 +28,7 @@ namespace Homework2_OOPCharacterBattle
             Character playerTwoW = new Warrior();
             Character playerTwoA = new Archer();
 
-            while (playerOneM.CharacterHealth() > 0)
+            while (playerOneM.CharacterHealth() != 0)
             {
                 {
                     //print inital board
@@ -124,6 +124,8 @@ namespace Homework2_OOPCharacterBattle
                     int playerMage = playerOneM.CharacterPriority();
                     int playerWarrior = playerOneW.CharacterPriority();
                     int playerArcher = playerOneA.CharacterPriority();
+
+                    Console.WriteLine(" ");
 
                     if (pOne == 'a')
                     {
