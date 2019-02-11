@@ -10,83 +10,164 @@ namespace Homework2_OOPCharacterBattle
     {
         static void Main(string[] args)
         {
-            char playerOne;
-            char playerTwo;
+            char pOne;
+            char pTwo;
 
 
             //prompt player 1 for character choice 
             Console.WriteLine("Player 1, what class do you choose? m,w,a: ");
-            playerOne = char.Parse(Console.ReadLine());
+            pOne = char.Parse(Console.ReadLine());
 
             //prompt player 2 for character choice 
-            Console.WriteLine("Player 2, waht class do you choose? m,w,a: ");
-            playerTwo = char.Parse(Console.ReadLine());
+            Console.WriteLine("Player 2, what class do you choose? m,w,a: ");
+            pTwo = char.Parse(Console.ReadLine());
 
-            
+            Character playerOneM = new Mage();
+            Character playerOneW = new Warrior();
+            Character playerOneA = new Archer();
+            Character playerTwoM = new Mage();
+            Character playerTwoW = new Warrior();
+            Character playerTwoA = new Archer();
+           
 
-            Mage mage = new Mage();
-            Warrior warrior = new Warrior();
-            Archer archer = new Archer();
-
+            //print inital board
             printBoard(23, 28);
 
-            if (playerOne == 'm')
+            if (pOne == 'm')
             {
-                //print player health points 
-                Console.Write("Player 1 HP: {0} -", mage.SetHealth);
-            }
-            else if(playerOne == 'w')
-            {
-                //print player health points 
-                Console.Write("Player 1 HP: {0} -", warrior.SetHealth);
 
-            } else if(playerOne == 'a')
+                //print player health points 
+                     Console.Write("Player 1 HP: {0} -", playerOneM.CharacterHealth());
+
+
+                //handle player two input and create new instances of character 
+                if (pTwo == 'm')
+                {
+
+                    //print player health points 
+                    Console.Write("Player 2 HP: {0} ", playerTwoM.CharacterHealth());
+                }
+                else if (pTwo == 'w')
+                {
+
+                    //print player health points 
+                    Console.Write("Player 2 HP: {0} ", playerTwoW.CharacterHealth());
+                }
+                else if (pTwo == 'a')
+                {
+
+                    //print player health points 
+                    Console.Write("Player 2 HP: {0} ", playerTwoA.CharacterHealth());
+                }
+
+
+
+
+            }
+            else if(pOne == 'w')
+            {
+
+                //print player health points 
+                Console.Write("Player 1 HP: {0} -", playerOneW.CharacterHealth());
+
+                //handle player two input and create new instances of character 
+                if (pTwo == 'm')
+                {
+
+                    //print player health points 
+                    Console.Write("Player 2 HP: {0} ", playerTwoM.CharacterHealth());
+                }
+                else if (pTwo == 'w')
+                {
+
+                    //print player health points 
+                    Console.Write("Player 2 HP: {0} ", playerTwoW.CharacterHealth());
+                }
+                else if (pTwo == 'a')
+                {
+
+                    //print player health points 
+                    Console.Write("Player 2 HP: {0} ", playerTwoA.CharacterHealth());
+                }
+
+
+
+            }
+            else if(pOne == 'a')
              {
+
                 //print player health points 
-                Console.Write("Player 1 HP: {0} -", archer.SetHealth);
+                Console.Write("Player 1 HP: {0} -", playerOneA.CharacterHealth());
+
+                //handle player two input and create new instances of character 
+                if (pTwo == 'm')
+                {
+
+                    //print player health points 
+                    Console.Write("Player 2 HP: {0} ", playerTwoM.CharacterHealth());
+                }
+                else if (pTwo == 'w')
+                {
+
+                    //print player health points 
+                    Console.Write("Player 2 HP: {0} ", playerTwoW.CharacterHealth());
+                }
+                else if (pTwo == 'a')
+                {
+
+                    //print player health points 
+                    Console.Write("Player 2 HP: {0} ", playerTwoA.CharacterHealth());
+                }
+
 
             }
 
-            //handle player two input and create new instances of character 
-            if (playerTwo == 'm')
+            int playerMage = playerOneM.CharacterPriority();
+            int playerWarrior = playerOneW.CharacterPriority();
+            int playerArcher = playerOneA.CharacterPriority();
+
+            if(pOne == 'a')
             {
-                //print player health points 
-                Console.Write("Player 2 HP: {0} ", mage.SetHealth);
-            }
-            else if (playerTwo == 'w')
+                //print go first 
+                Console.WriteLine("Player 1, what do you choose to do?");
+
+
+            } else if(pOne == 'w')
             {
-                //print player health points 
-                Console.Write("Player 2 HP: {0} ", warrior.SetHealth);
-            }
-            else if (playerTwo == 'a')
+                //go last 
+                Console.WriteLine("Player 2, what do you choose to do?");
+
+            } else if(pOne == 'm' && pTwo == 'a'){
+                //go last 
+                Console.WriteLine("Player 2, what do you choose to do?");
+
+            } else if(pOne == 'm' && pTwo == 'w')
             {
-                //print player health points 
-                Console.Write("Player 2 HP: {0} ", archer.SetHealth);
+                //go first 
+                Console.WriteLine("Player 1, what do you choose to do?");
             }
 
-            while(mage.SetHealth != 0 && warrior.SetHealth != 0 && archer.SetHealth != 0)
+            Console.WriteLine(" ");
+            Console.Write("1. Move and attack");
+
+            if (pOne == 'm')
             {
-                
+                Console.WriteLine(playerOneM.GetMovementAttackDescription(playerOneM.MovesSpeed(), playerOneM.CharacterAttackRange(), playerOneM.Damages()));
+                Console.Write("2. Special ");
+                Console.WriteLine(playerOneM.GetSpecialDescription());
 
-
-
-                //give low priority to player ask what they want to do
-                //move and attack 
-                //special 
-
-                //if move and attack, how many units to move 
-                //you moved, would you like to attack y/n
-                //if not next player move 
-
-                //if yes, then 
-                //print opted to attack, attack or too far away 
-
-
-                //if special 
-                //apply special damage 
-
-
-
+            }
+            else if (pOne == 'w')
+            {
+                Console.WriteLine(playerOneW.GetMovementAttackDescription(playerOneW.MovesSpeed(), playerOneW.CharacterAttackRange(), playerOneM.Damages()));
+                Console.Write("2. Special ");
+                Console.WriteLine(playerOneW.GetSpecialDescription());
+            }
+            else if (pOne == 'a')
+            {
+                Console.WriteLine(playerOneA.GetMovementAttackDescription(playerOneA.MovesSpeed(), playerOneA.CharacterAttackRange(), playerOneM.Damages()));
+                Console.Write("2. Special ");
+                Console.WriteLine(playerOneA.GetSpecialDescription());
             }
 
 
@@ -102,8 +183,10 @@ namespace Homework2_OOPCharacterBattle
 
 
 
-        }  
-        
+
+
+        }
+
         public static void printBoard(int pOnePosition, int pTwoPosition)
         {
 

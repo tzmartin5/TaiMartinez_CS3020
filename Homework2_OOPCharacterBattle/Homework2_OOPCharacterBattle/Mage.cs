@@ -13,7 +13,9 @@ namespace Homework2_OOPCharacterBattle
          int damagePerAttack = 20;
          int health = 50;
          int priority = 2;
-         int attackRange = 6;       
+         int attackRange = 6;
+        int position = 23;
+
 
 
         //handles moveSpeed
@@ -47,11 +49,14 @@ namespace Homework2_OOPCharacterBattle
         { return SetHealth; }
 
         //handle position
-        int position;
-        public override int CharacterPosition()
+        public int SetPosition
         {
-            return position;
+            get { return position; }
+            set { position = value; }
         }
+
+        public override int CharacterPosition()
+        { return SetPosition; }
 
         //handle priority 
         public int SetPriority 
@@ -73,12 +78,26 @@ namespace Homework2_OOPCharacterBattle
         public override int CharacterAttackRange()
         { return SetAttackRange; }
 
- 
 
 
+        public override string GetSpecialDescription()
+        {
+            return "3 range attack that knocks the oppenent away 4 units and deals 10 damage";
+        }
 
-        //override string Special(Character target)
+
         //knock back the oppenent 4 units, range 3, deals 3 damange 
+        public override string Special(Character target)
+        {
+            if (attackRange >= target.Position)
+            {
+                return "Oppenent in range - Special unleashed.";
+            }
+            else
+            {
+                return "Oppenent not in range - special denied";
+            }
+        }
 
 
 

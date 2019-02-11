@@ -76,9 +76,24 @@ namespace Homework2_OOPCharacterBattle
 
 
 
+        public override string GetSpecialDescription()
+        {
+            return "Leaps up to 8 units toward the target. If target is greater than 5 units way, but less than 9, deals 30 damage";
+        }
 
-        //override string Special(Character target)
+
         //leap up to 8 units to the spot infront of the oppenent if possible, if opponent is greater than 5 units away, deal 30 damange 
+      public override string Special(Character target)
+        {
+            if (attackRange >= target.Position)
+            {
+                return "Oppenent in range - Special unleashed.";
+            }
+            else
+            {
+                return "Oppenent not in range - special denied";
+            }
+        }
 
 
 

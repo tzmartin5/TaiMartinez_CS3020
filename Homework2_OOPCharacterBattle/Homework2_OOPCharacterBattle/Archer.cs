@@ -72,8 +72,25 @@ namespace Homework2_OOPCharacterBattle
         public override int CharacterAttackRange()
         { return SetAttackRange; }
 
-        //override string Special(Character target)
+
+        public override string GetSpecialDescription()
+        {
+            return "12 range attack that deals 10 damage";
+        }
+
+
         //12 range attack, deals 10 damage
+       public override string Special(Character target)
+        {
+            if (attackRange >= target.Position)
+            {
+                return "Oppenent in range - Special unleashed.";
+            }
+            else
+            {
+                return "Oppenent not in range - special denied";
+            }
+        }
 
 
 

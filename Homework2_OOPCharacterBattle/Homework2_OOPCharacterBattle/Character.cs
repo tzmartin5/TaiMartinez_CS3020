@@ -88,29 +88,38 @@ namespace Homework2_OOPCharacterBattle
             health = health - damagePerAttack;
         }
 
+
         // returns string containing movespeed, attack range, and damange
-        public string GetMovementAttackDescription()
+         public string GetMovementAttackDescription(int move, int attack, int damage)
          {
-            string information = "(Max movement = " + moveSpeed + "Attack range = " + attackRange +  "Damage = " + damagePerAttack + ")";
 
-       
-            return information;
-        }
+            string information;
 
-      //   abstract string GetSpecialDescription()
-       //  {
+            return information = "(Max movement = " + move + " Attack range = " + attack +  " Damage = " + damage + ")";
+
+          }
+
         //returns a descritption of the special attack 
-        // }
+        abstract public string GetSpecialDescription();
 
-        // string Attack(Character target)
-        // {
-        //strings a string if the attack was successful or not 
-        // }
+        //returns a string if the attack was successful or not 
+        string Attack(Character target)
+         {
 
-        //abstract string Special(Character target)
-        //{
+            if(attackRange >= target.Position)
+            {
+                return "You attacked successfully";
+            }
+            else
+            {
+                return "You are too far to atttack";
+            }
+
+         }
+
         //returns a string describing what happened 
-       // }
+       public abstract string Special(Character target);
+        
 
 
 
