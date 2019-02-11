@@ -83,7 +83,7 @@ namespace Homework2_OOPCharacterBattle
         abstract public int CharacterAttackRange();
 
 
-         void TakeDamage(int amount)
+        public void TakeDamage(int amount)
         {
             health = health - damagePerAttack;
         }
@@ -103,7 +103,7 @@ namespace Homework2_OOPCharacterBattle
         abstract public string GetSpecialDescription();
 
         //returns a string if the attack was successful or not 
-        string Attack(Character target)
+        public string Attack(Character target)
          {
 
             if(attackRange >= target.Position)

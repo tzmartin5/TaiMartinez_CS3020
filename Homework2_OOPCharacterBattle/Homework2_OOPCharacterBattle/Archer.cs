@@ -84,7 +84,7 @@ namespace Homework2_OOPCharacterBattle
         {
             if (attackRange >= target.Position)
             {
-                return "Oppenent in range - Special unleashed.";
+                return "Oppenent in range - Special unleashed, 10 damage.";
             }
             else
             {
