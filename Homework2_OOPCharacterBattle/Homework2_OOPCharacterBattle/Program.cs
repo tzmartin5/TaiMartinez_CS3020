@@ -13,7 +13,6 @@ namespace Homework2_OOPCharacterBattle
             char pOne;
             char pTwo;
 
-
             //prompt player 1 for character choice 
             Console.WriteLine("Player 1, what class do you choose? m,w,a: ");
             pOne = char.Parse(Console.ReadLine());
@@ -29,9 +28,9 @@ namespace Homework2_OOPCharacterBattle
             Character playerTwoW = new Warrior();
             Character playerTwoA = new Archer();
            
-
+            //while(playerOneM.CharacterHealth() != 0)
             //print inital board
-            printBoard(23, 28);
+            printBoard(playerOneM.CharacterPosition(), playerOneM.CharacterPosition() + 5);
 
             if (pOne == 'm')
             {
@@ -118,8 +117,6 @@ namespace Homework2_OOPCharacterBattle
                     //print player health points 
                     Console.Write("Player 2 HP: {0} ", playerTwoA.CharacterHealth());
                 }
-
-
             }
 
             int playerMage = playerOneM.CharacterPriority();
@@ -170,10 +167,37 @@ namespace Homework2_OOPCharacterBattle
                 Console.WriteLine(playerOneA.GetSpecialDescription());
             }
 
+            int playerChoice = 0;
+            int inputtedMove = 0;
+            char attackChoice;
+
+            playerChoice = int.Parse(Console.ReadLine());
 
 
+            if(playerChoice == 1)
+            {
+                Console.WriteLine("How many units would you like to move? ");
+                inputtedMove = int.Parse(Console.ReadLine());
 
+                if(inputtedMove <= playerOneM.MovesSpeed())
+                {
+                    Console.WriteLine("You moved");
+                    Console.WriteLine("Would you like to attack? y/n");
+                    attackChoice = char.Parse(Console.ReadLine());
 
+                    if(attackChoice == 'y')
+                    {
+                        Console.WriteLine("You have attacked. ");
+                    } else
+                    {
+                        Console.WriteLine("You have chosen not to attack");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("You can't move that far");
+                }
+            } 
 
 
 
@@ -206,10 +230,8 @@ namespace Homework2_OOPCharacterBattle
             Console.Write(updatedBoard);
             Console.WriteLine(" ");
         }
-
-
-
-
-
     }
+
+
+
 }

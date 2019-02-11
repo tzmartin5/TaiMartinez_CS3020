@@ -16,8 +16,6 @@ namespace Homework2_OOPCharacterBattle
          int attackRange = 6;
         int position = 23;
 
-
-
         //handles moveSpeed
         public int Moves
         {
