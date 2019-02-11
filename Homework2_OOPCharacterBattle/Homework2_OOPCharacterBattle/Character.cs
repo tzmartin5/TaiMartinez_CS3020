@@ -23,7 +23,7 @@ namespace Homework2_OOPCharacterBattle
             damagePerAttack = damage;
         }
 
-
+        //default constructor 
         public Character()
         {
         }
@@ -46,24 +46,59 @@ namespace Homework2_OOPCharacterBattle
 
         abstract public int Damages();
 
+        //handle health 
+        public int Health
+        {
+            get { return health; }
+            set { health = value; }
+        }
+
+        abstract public int CharacterHealth();
+
+        //handle position
+        public int Position
+        {
+            get { return position; }
+            set { position = value; }
+        }
+
+        abstract public int CharacterPosition();
+
+        //handle priority 
+        public int Priority
+        {
+            get { return priority; }
+            set { priority = value; }
+        }
+
+        abstract public int CharacterPriority();
+
+        //handle attack range 
+        public int AttackRange
+        {
+            get { return attackRange; }
+            set { attackRange = value; }
+        }
+
+        abstract public int CharacterAttackRange();
 
 
+         void TakeDamage(int amount)
+        {
+            health = health - damagePerAttack;
+        }
 
+        // returns string containing movespeed, attack range, and damange
+        public string GetMovementAttackDescription()
+         {
+            string information = "(Max movement = " + moveSpeed + "Attack range = " + attackRange +  "Damage = " + damagePerAttack + ")";
 
+       
+            return information;
+        }
 
-        // void TakeDamage(int amount)
-        //{
-
-        //}
-
-        // public string GetMovementAttackDescription()
-        // {
-        // returns string contaiing movespeed, attack range, and damange
-        //   return Console.WriteLine("MoveSpeed is: {0}", moveSpeed);
-        // }
-
-        // abstract string GetSpecialDescription()
-        // {
+      //   abstract string GetSpecialDescription()
+       //  {
         //returns a descritption of the special attack 
         // }
 
@@ -75,7 +110,7 @@ namespace Homework2_OOPCharacterBattle
         //abstract string Special(Character target)
         //{
         //returns a string describing what happened 
-        //}
+       // }
 
 
 

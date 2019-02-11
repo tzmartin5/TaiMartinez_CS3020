@@ -11,9 +11,9 @@ namespace Homework2_OOPCharacterBattle
 
          int moveSpeed = 1;
          int damagePerAttack = 20;
-        // int health = 50;
-        // int priority = 2;
-        // int attackRange = 6;       
+         int health = 50;
+         int priority = 2;
+         int attackRange = 6;       
 
 
         //handles moveSpeed
@@ -26,7 +26,7 @@ namespace Homework2_OOPCharacterBattle
         public override int MovesSpeed()
         { return Moves; }
 
-        //handle damange 
+        //handle damage 
         public int SetDamage
         {
             get { return damagePerAttack; }
@@ -36,8 +36,44 @@ namespace Homework2_OOPCharacterBattle
         public override int Damages()
         { return SetDamage; }
 
+        //handle health 
+        public int SetHealth
+        {
+            get { return health; }
+            set { health = value; }
+        }
 
+        public override int CharacterHealth()
+        { return SetHealth; }
 
+        //handle position
+        int position;
+        public override int CharacterPosition()
+        {
+            return position;
+        }
+
+        //handle priority 
+        public int SetPriority 
+        {
+            get { return priority; }
+            set { priority = value; }
+        }
+
+        public override int CharacterPriority()
+        { return SetPriority; }
+
+        //handle attack range 
+        public int SetAttackRange
+        {
+            get { return attackRange; }
+            set { attackRange = value; }
+        }
+
+        public override int CharacterAttackRange()
+        { return SetAttackRange; }
+
+ 
 
 
 
