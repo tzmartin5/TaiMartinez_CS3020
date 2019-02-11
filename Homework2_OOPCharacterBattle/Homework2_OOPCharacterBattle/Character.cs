@@ -6,41 +6,76 @@ using System.Threading.Tasks;
 
 namespace Homework2_OOPCharacterBattle
 {
-   public abstract class Character
+    public abstract class Character
     {
 
-        int moveSpeed = 0;
-        int damagePerAttack = 0;
-        int health = 0;
-        int position = 0;
-        int priority = 0;
-        int attackRange = 0;
+        int moveSpeed;
+        int damagePerAttack;
+        int health;
+        int position;
+        int priority;
+        int attackRange;
 
-        void TakeDamage(int amount)
+       //constructor 
+        public Character(int mSpeed, int damage)
         {
-
+            moveSpeed = mSpeed;
+            damagePerAttack = damage;
         }
 
-        string GetMovementAttackDescription()
+
+        public Character()
         {
-            // returns string contaiing movespeed, attack range, and damange
-            return ;
         }
 
-        abstract string GetSpecialDescription()
+        //handle moveSpeed
+        public int MSpeed
         {
-            //returns a descritption of the special attack 
+            get {return moveSpeed;  }
+            set{ moveSpeed = value; }
         }
 
-        string Attack(Character target)
+        abstract public int MovesSpeed();
+
+        //handle damagePerAttack 
+        public int DamageAttack
         {
-            //strings a string if the attack was successful or not 
+            get { return damagePerAttack; }
+            set { damagePerAttack = value; }
         }
 
-        abstract string Special(Character target)
-        {
-            //returns a string describing what happened 
-        }
+        abstract public int Damages();
+
+
+
+
+
+
+        // void TakeDamage(int amount)
+        //{
+
+        //}
+
+        // public string GetMovementAttackDescription()
+        // {
+        // returns string contaiing movespeed, attack range, and damange
+        //   return Console.WriteLine("MoveSpeed is: {0}", moveSpeed);
+        // }
+
+        // abstract string GetSpecialDescription()
+        // {
+        //returns a descritption of the special attack 
+        // }
+
+        // string Attack(Character target)
+        // {
+        //strings a string if the attack was successful or not 
+        // }
+
+        //abstract string Special(Character target)
+        //{
+        //returns a string describing what happened 
+        //}
 
 
 

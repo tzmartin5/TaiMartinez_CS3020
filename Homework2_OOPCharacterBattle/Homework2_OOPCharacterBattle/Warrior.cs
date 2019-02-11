@@ -9,15 +9,45 @@ namespace Homework2_OOPCharacterBattle
    public class Warrior : Character
     {
 
-        //moveSpeed = 2
-        //damangePerAttack = 20
-        //health = 75
-        //priority = 3;
-        //range = 1
+       int moveSpeed = 2;
+       int damagePerAttack = 20;
+       int health = 75;
+       int priority = 3;
+        int range = 1;
+
+
+        //handles moveSpeed
+        public int Moves
+        {
+            get { return moveSpeed; }
+            set { moveSpeed = value; }
+        }
+
+        public override int MovesSpeed()
+        { return Moves;}
+
+
+        //handle damange 
+        public int SetDamage
+        {
+            get { return damagePerAttack; }
+            set { damagePerAttack = value; }
+        }
+
+        public override int Damages()
+        { return SetDamage; }
+
+
+
+
+
+
+
+
 
         //override string Special(Character target)
         //leap up to 8 units to the spot infront of the oppenent if possible, if opponent is greater than 5 units away, deal 30 damange 
-        
+
 
 
 
