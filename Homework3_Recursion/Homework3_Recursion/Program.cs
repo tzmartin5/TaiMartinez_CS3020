@@ -14,14 +14,14 @@ namespace Homework3_Recursion
         //sets the f to null 
         static FileInfo f = null;
 
-
+        //function recursively gets the files from the folder
         static FileInfo GetFiles(string folder, string fileType)
         {
 
             //create list to hold files 
             List<string> files = new List<string>();
 
-           string newPath = AppDomain.CurrentDomain.BaseDirectory + "\\" + "CopiedFolder";
+            string newPath = AppDomain.CurrentDomain.BaseDirectory + "\\" + "CopiedFolder";
 
             foreach (DirectoryInfo directory in new DirectoryInfo(folder).GetDirectories())
             {
@@ -35,6 +35,7 @@ namespace Homework3_Recursion
                     //create the directory if it doesn't exist
                     foreach (string i in files)
                     {
+
                         if (!Directory.Exists(newPath))
                         {
                             Directory.CreateDirectory(newPath);
@@ -45,12 +46,13 @@ namespace Homework3_Recursion
                     //copy all the specific files to the folder 
                     File.Copy(directory.FullName + "\\" + file.Name, newPath + "\\" + file.Name, true);
                 }
-                if ((f = GetFiles(directory.FullName, fileType)) != null) 
+                if ((f = GetFiles(directory.FullName, fileType)) != null)
                     return f;
             }
             return f;
         }
-                                    
+
+
         static void Main(string[] args)
         {
 
