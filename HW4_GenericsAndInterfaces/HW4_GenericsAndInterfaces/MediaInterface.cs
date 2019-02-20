@@ -8,5 +8,6 @@ namespace HW4_GenericsAndInterfaces
 {
     interface MediaInterface
     {
+
     }
 }

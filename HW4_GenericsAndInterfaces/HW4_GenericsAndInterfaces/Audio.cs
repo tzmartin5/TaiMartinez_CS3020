@@ -8,5 +8,6 @@ namespace HW4_GenericsAndInterfaces
 {
     class Audio : MediaInterface
     {
+
     }
 }
