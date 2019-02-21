@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+
 
 
 namespace HW4_GenericsAndInterfaces
@@ -69,6 +71,12 @@ namespace HW4_GenericsAndInterfaces
 
         void videoScan()
         {
+            string directory;
+            Console.WriteLine("Enter a directory to search for: ");
+            directory = Console.ReadLine();
+
+
+
             //ask user for directory to search
             //display message saying: JPG found - C://users/desktop/myjpg.jpg
             //etc
@@ -77,6 +85,10 @@ namespace HW4_GenericsAndInterfaces
 
         void audioScan()
         {
+            string directory;
+            Console.WriteLine("Enter a directory to search for: ");
+            directory = Console.ReadLine();
+
             //ask user for directory to search
             //display message saying: JPG found - C://users/desktop/myjpg.jpg
             //etc
@@ -85,6 +97,10 @@ namespace HW4_GenericsAndInterfaces
 
         void imageScan()
         {
+            string directory;
+            Console.WriteLine("Enter a directory to search for: ");
+            directory = Console.ReadLine();
+
             //ask user for directory to search
             //display message saying: JPG found - C://users/desktop/myjpg.jpg
             //etc
@@ -92,63 +108,87 @@ namespace HW4_GenericsAndInterfaces
 
         void videoLibrary()
         {
-            Console.WriteLine("Library Information: ");
-            Console.WriteLine("Index");
-            Console.WriteLine("File name");
-            Console.WriteLine("File extension");
-            Console.WriteLine("Date last accessed");
+            int menuChoice;
+
+            Console.WriteLine("------Library Information-------");
+            Console.WriteLine("Index: ");
+            Console.WriteLine("File name: ");
+            Console.WriteLine("File extension: ");
+            Console.WriteLine("Date last accessed: ");
             //index
             //file name
             //file extension
             //date last accessed
 
-            //library menu
-            //1. sort by name
-            //2. sort by extension
-            //3. sort by date last accessed
-            //4. touch file
-                //1. user inputs an index to touch a file 
-            //5. remove file
-                //1.remove the file from the library, not disk
-            //6.back to main menu 
+            Console.WriteLine(" ");
+            Console.WriteLine("Library Menu");
+            Console.WriteLine("1. Sort by name");
+            Console.WriteLine("2. Sort by extension");
+            Console.WriteLine("3. Sort by date last accessed");
+            Console.WriteLine("4. Touch File");     //user inputs an index to touch a file, opened and change date accessed  
+            Console.WriteLine("5. Remove file");    //remove the file form the library not disk
+            Console.WriteLine("6. Back to main menu");
+            menuChoice = int.Parse(Console.ReadLine());
+
+            //if statement handling user input 
+
+
+
+      
         }
 
         void audioLibrary()
         {
-            //display:
+            int menuChoice;
+
+            Console.WriteLine("------Library Information-------");
+            Console.WriteLine("Index: ");
+            Console.WriteLine("File name: ");
+            Console.WriteLine("File extension: ");
+            Console.WriteLine("Date last accessed: ");
             //index
             //file name
             //file extension
             //date last accessed
 
-            //library menu
-            //1. sort by name
-            //2. sort by extension
-            //3. sort by date last accessed
-            //4. touch file
-            //1. user inputs an index to touch a file 
-            //5. remove file
-            //1.remove the file from the library, not disk
-            //6.back to main menu 
+            Console.WriteLine(" ");
+            Console.WriteLine("Library Menu");
+            Console.WriteLine("1. Sort by name");
+            Console.WriteLine("2. Sort by extension");
+            Console.WriteLine("3. Sort by date last accessed");
+            Console.WriteLine("4. Touch File");     //user inputs an index to touch a file 
+            Console.WriteLine("5. Remove file");    //remove the file form the library not disk
+            Console.WriteLine("6. Back to main menu");
+            menuChoice = int.Parse(Console.ReadLine());
+
+            //if statement handling user input 
         }
 
         void imageLibrary()
         {
-            //display:
+            int menuChoice;
+
+            Console.WriteLine("------Library Information-------");
+            Console.WriteLine("Index: ");
+            Console.WriteLine("File name: ");
+            Console.WriteLine("File extension: ");
+            Console.WriteLine("Date last accessed: ");
             //index
             //file name
             //file extension
             //date last accessed
 
-            //library menu
-            //1. sort by name
-            //2. sort by extension
-            //3. sort by date last accessed
-            //4. touch file
-            //1. user inputs an index to touch a file 
-            //5. remove file
-            //1.remove the file from the library, not disk
-            //6.back to main menu 
+            Console.WriteLine(" ");
+            Console.WriteLine("Library Menu");
+            Console.WriteLine("1. Sort by name");
+            Console.WriteLine("2. Sort by extension");
+            Console.WriteLine("3. Sort by date last accessed");
+            Console.WriteLine("4. Touch File");     //user inputs an index to touch a file 
+            Console.WriteLine("5. Remove file");    //remove the file form the library not disk
+            Console.WriteLine("6. Back to main menu");
+            menuChoice = int.Parse(Console.ReadLine());
+
+            //if statement handling user input 
         }
 
     }
