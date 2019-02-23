@@ -40,7 +40,7 @@ namespace HW4_GenericsAndInterfaces
                 //call image library method
             } else if(userChoice == 8)
             {
-                //end the program 
+                Console.WriteLine("Thank you for using this program. Program has ended.");
             }
             else
             {
@@ -53,8 +53,7 @@ namespace HW4_GenericsAndInterfaces
        //method prints main menu
        public static void printMenu(ref int userChoice) {
 
-
-            Console.WriteLine("Main Menu - Choose an option: ");
+            Console.WriteLine("Main Menu - Choose an number option: ");
             Console.WriteLine("1. Scan for videos");
             Console.WriteLine("2. Scan for audio");
             Console.WriteLine("3.Scan for images");
@@ -62,7 +61,7 @@ namespace HW4_GenericsAndInterfaces
             Console.WriteLine("5. Access video library");
             Console.WriteLine("6. Access audio library");
             Console.WriteLine("7. Access image library");
-            Console.WriteLine("Close program");
+            Console.WriteLine("8. Close program");
             Console.WriteLine(" ");
 
             userChoice = int.Parse(Console.ReadLine());
@@ -100,6 +99,19 @@ namespace HW4_GenericsAndInterfaces
             string directory;
             Console.WriteLine("Enter a directory to search for: ");
             directory = Console.ReadLine();
+
+            //get jpg file type 
+            string jpg = FileType.GetName(typeof(FileType), FileType.JPG);
+            string filejpg = ("*." + jpg.ToLower());
+
+            //get png file type 
+            string png = FileType.GetName(typeof(FileType), FileType.PNG);
+            string filepng = ("*." + png.ToLower());
+
+            List<Image> picture = new List<Image>();
+
+
+
 
             //ask user for directory to search
             //display message saying: JPG found - C://users/desktop/myjpg.jpg
@@ -190,6 +202,52 @@ namespace HW4_GenericsAndInterfaces
 
             //if statement handling user input 
         }
+
+
+
+
+        static List<FileInfo> RecursivelySearchForImageType(string path, string[] types)
+        {
+
+            List<FileInfo> media = new List<FileInfo>();
+
+
+            foreach (DirectoryInfo directory in new DirectoryInfo(path).GetDirectories())
+            {
+                try
+                {
+
+                    foreach (string s in types)
+                    {
+
+                        foreach (FileInfo file in new DirectoryInfo(directory.FullName).GetFiles(s))
+                        {
+                            Console.WriteLine("Found file" + file.Name + "in" + file.DirectoryName);
+
+                            string parsedFileName = file.FullName.Split(new char[] { ':' })[1];
+                            string parsedFilePath = parsedFileName.Split(new string[] { s },
+                                StringSplitOptions.RemoveEmptyEntries)[0];
+                            parsedFilePath = parsedFilePath.Remove(parsedFilePath.LastIndexOf("\\"));
+                            Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + parsedFilePath);
+                            File.Copy(file.FullName, AppDomain.CurrentDomain.BaseDirectory + parsedFileName, true);
+                            media.Add(file);
+
+                        }
+                    }
+
+                    media.AddRange(RecursivelySearchForImageType(directory.FullName, types));
+                }
+                catch (UnauthorizedAccessException e)
+                {
+                    Console.WriteLine("No access avaiable to" + directory.FullName);
+                }
+
+                return media;
+
+            }
+
+        }
+
 
     }
 }
