@@ -17,25 +17,34 @@ namespace HW4_GenericsAndInterfaces
             int userChoice = 0;
             PrintMenu(ref userChoice);
 
+            List<FileInfo> video = new List<FileInfo>();
+            List<FileInfo> audio = new List<FileInfo>();
+            List<FileInfo> image = new List<FileInfo>();
+
+
             //handle user input
             if(userChoice == 1)
             {
                 //call for video scan
-                VideoScan();
+                VideoScan(ref video);
 
             } else if(userChoice == 2)
             {
                 //call for audio scan
-                AudioScan();
+                AudioScan(ref audio);
 
             } else if(userChoice == 3)
             {
                 //call for image scan
-                ImageScan();
+                ImageScan(ref image);
 
             } else if(userChoice == 4)
             {
-                //scan for all media 
+                //call for all types
+                VideoScan(ref video);
+                AudioScan(ref audio);
+                ImageScan(ref image);
+
             } else if(userChoice == 5)
             {
                 //call video library method
@@ -54,17 +63,18 @@ namespace HW4_GenericsAndInterfaces
                 Console.WriteLine("Invalid choice");
             }
 
+        }
 
-         }
+         
 
        //method prints main menu
        public static void PrintMenu(ref int userChoice) {
 
             Console.WriteLine("Main Menu - Choose an number option: ");
-            Console.WriteLine("1. Scan for videos");
-            Console.WriteLine("2. Scan for audio");
-            Console.WriteLine("3.Scan for images");
-            Console.WriteLine("4.Scan for all");
+            Console.WriteLine("1. Scan for videos (AVI, MOV)");
+            Console.WriteLine("2. Scan for audio (WAV, MP3, MP4)");
+            Console.WriteLine("3.Scan for images (JPG, PNG)");
+            Console.WriteLine("4.Scan for all (Videos, Audio, and Images) ");
             Console.WriteLine("5. Access video library");
             Console.WriteLine("6. Access audio library");
             Console.WriteLine("7. Access image library");
@@ -75,7 +85,7 @@ namespace HW4_GenericsAndInterfaces
 
         }
 
-       public static void VideoScan()
+       public static void VideoScan(ref List<FileInfo> video)
         {
             string directory;
             Console.WriteLine("Enter a directory to search for: ");
@@ -93,15 +103,12 @@ namespace HW4_GenericsAndInterfaces
             videoTypes[0] = fileavi;
             videoTypes[1] = filemov;
 
-            //create list to store files
-            List<FileInfo> videos = new List<FileInfo>();
-
             //call recursive function to get files 
-            videos = SearchForFile(directory, videoTypes);
+            video = SearchForFile(directory, videoTypes);
         }
 
 
-      public static void AudioScan()
+      public static void AudioScan(ref List<FileInfo> audio)
         {
             string directory;
             Console.WriteLine("Enter a directory to search for: ");
@@ -124,15 +131,12 @@ namespace HW4_GenericsAndInterfaces
             audioTypes[1] = filempThree;
             audioTypes[2] = filempFour;
 
-            //create list to store files
-            List<FileInfo> audios = new List<FileInfo>();
-
             //call recursive function to get files 
-            audios = SearchForFile(directory, audioTypes);
+            audio = SearchForFile(directory, audioTypes);
         }
 
 
-       public static void ImageScan()
+       public static void ImageScan(ref List<FileInfo> image)
         {
             string directory;
             Console.WriteLine("Enter a directory to search for: ");
@@ -150,14 +154,11 @@ namespace HW4_GenericsAndInterfaces
             imageTypes[0] = filejpg;
             imageTypes[1] = filepng;
 
-            //create list to store files
-            List<FileInfo> picture = new List<FileInfo>();
-
             //call recursive file finding method
-            picture = SearchForFile(directory, imageTypes);
+            image = SearchForFile(directory, imageTypes);
         }
 
-        void VideoLibrary()
+        void VideoLibrary(List<FileInfo> video)
         {
             int menuChoice;
 
@@ -188,20 +189,35 @@ namespace HW4_GenericsAndInterfaces
       
         }
 
-        void AudioLibrary()
+        void AudioLibrary(List <FileInfo> audio)
         {
             int menuChoice;
 
-            Console.WriteLine("------Library Information-------");
-            Console.WriteLine("Index: ");
-            Console.WriteLine("File name: ");
-            Console.WriteLine("File extension: ");
-            Console.WriteLine("Date last accessed: ");
-            //index
-            //file name
-            //file extension
-            //date last accessed
 
+       
+
+            Console.WriteLine("------Library Information-------");
+
+            foreach (FileInfo i in audio)
+            {
+                Console.Write("|{0}|: ", audio.IndexOf(i));
+                Console.Write(i);
+
+               // if (i.Contains(".mov"))
+                //{
+
+               // }
+                Console.Write("\t{0}");
+
+                Console.WriteLine("File name: ");
+                Console.WriteLine("File extension: ");
+                Console.WriteLine("Date last accessed: ");
+                //index
+                //file name
+                //file extension
+                //date last accessed
+
+            }
             Console.WriteLine(" ");
             Console.WriteLine("Library Menu");
             Console.WriteLine("1. Sort by name");
@@ -215,11 +231,14 @@ namespace HW4_GenericsAndInterfaces
             //if statement handling user input 
         }
 
-        void ImageLibrary()
+        void ImageLibrary(List<FileInfo> image)
         {
             int menuChoice;
 
             Console.WriteLine("------Library Information-------");
+
+            
+
             Console.WriteLine("Index: ");
             Console.WriteLine("File name: ");
             Console.WriteLine("File extension: ");
