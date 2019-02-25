@@ -15,17 +15,24 @@ namespace HW4_GenericsAndInterfaces
         static void Main(string[] args)
         {
             int userChoice = 0;
-            printMenu(ref userChoice);
+            PrintMenu(ref userChoice);
 
+            //handle user input
             if(userChoice == 1)
             {
-                //call videoScan method
+                //call for video scan
+                VideoScan();
+
             } else if(userChoice == 2)
             {
-                //call audioScan method
+                //call for audio scan
+                AudioScan();
+
             } else if(userChoice == 3)
             {
-                //call imageScan method
+                //call for image scan
+                ImageScan();
+
             } else if(userChoice == 4)
             {
                 //scan for all media 
@@ -51,7 +58,7 @@ namespace HW4_GenericsAndInterfaces
          }
 
        //method prints main menu
-       public static void printMenu(ref int userChoice) {
+       public static void PrintMenu(ref int userChoice) {
 
             Console.WriteLine("Main Menu - Choose an number option: ");
             Console.WriteLine("1. Scan for videos");
@@ -68,33 +75,64 @@ namespace HW4_GenericsAndInterfaces
 
         }
 
-        void videoScan()
+       public static void VideoScan()
         {
             string directory;
             Console.WriteLine("Enter a directory to search for: ");
             directory = Console.ReadLine();
 
+            //get avi file type 
+            string avi = FileType.GetName(typeof(FileType), FileType.AVI);
+            string fileavi = ("*." + avi.ToLower());
 
+            //get mov file type 
+            string mov = FileType.GetName(typeof(FileType), FileType.MOV);
+            string filemov = ("*." + mov.ToLower());
 
-            //ask user for directory to search
-            //display message saying: JPG found - C://users/desktop/myjpg.jpg
-            //etc
+            string[] videoTypes = new string[2];
+            videoTypes[0] = fileavi;
+            videoTypes[1] = filemov;
+
+            //create list to store files
+            List<FileInfo> videos = new List<FileInfo>();
+
+            //call recursive function to get files 
+            videos = SearchForFile(directory, videoTypes);
         }
 
 
-        void audioScan()
+      public static void AudioScan()
         {
             string directory;
             Console.WriteLine("Enter a directory to search for: ");
             directory = Console.ReadLine();
 
-            //ask user for directory to search
-            //display message saying: JPG found - C://users/desktop/myjpg.jpg
-            //etc
+            //get wav file type 
+            string wav = FileType.GetName(typeof(FileType), FileType.WAV);
+            string filewav = ("*." + wav.ToLower());
+
+            //get mp3 file type 
+            string mpThree = FileType.GetName(typeof(FileType), FileType.MP3);
+            string filempThree = ("*." + mpThree.ToLower());
+
+            //get mp4 file type 
+            string mpFour = FileType.GetName(typeof(FileType), FileType.MP4);
+            string filempFour = ("*." + mpFour.ToLower());
+
+            string[] audioTypes = new string[3];
+            audioTypes[0] = filewav;
+            audioTypes[1] = filempThree;
+            audioTypes[2] = filempFour;
+
+            //create list to store files
+            List<FileInfo> audios = new List<FileInfo>();
+
+            //call recursive function to get files 
+            audios = SearchForFile(directory, audioTypes);
         }
 
 
-        void imageScan()
+       public static void ImageScan()
         {
             string directory;
             Console.WriteLine("Enter a directory to search for: ");
@@ -108,17 +146,18 @@ namespace HW4_GenericsAndInterfaces
             string png = FileType.GetName(typeof(FileType), FileType.PNG);
             string filepng = ("*." + png.ToLower());
 
-            List<Image> picture = new List<Image>();
+            string[] imageTypes = new string[2];
+            imageTypes[0] = filejpg;
+            imageTypes[1] = filepng;
 
+            //create list to store files
+            List<FileInfo> picture = new List<FileInfo>();
 
-
-
-            //ask user for directory to search
-            //display message saying: JPG found - C://users/desktop/myjpg.jpg
-            //etc
+            //call recursive file finding method
+            picture = SearchForFile(directory, imageTypes);
         }
 
-        void videoLibrary()
+        void VideoLibrary()
         {
             int menuChoice;
 
@@ -149,7 +188,7 @@ namespace HW4_GenericsAndInterfaces
       
         }
 
-        void audioLibrary()
+        void AudioLibrary()
         {
             int menuChoice;
 
@@ -176,7 +215,7 @@ namespace HW4_GenericsAndInterfaces
             //if statement handling user input 
         }
 
-        void imageLibrary()
+        void ImageLibrary()
         {
             int menuChoice;
 
@@ -205,24 +244,21 @@ namespace HW4_GenericsAndInterfaces
 
 
 
-
-        static List<FileInfo> RecursivelySearchForImageType(string path, string[] types)
+        //method finds files of certain type in folder 
+        public static List<FileInfo> SearchForFile(string path, string[] types)
         {
 
             List<FileInfo> media = new List<FileInfo>();
-
 
             foreach (DirectoryInfo directory in new DirectoryInfo(path).GetDirectories())
             {
                 try
                 {
-
                     foreach (string s in types)
                     {
-
                         foreach (FileInfo file in new DirectoryInfo(directory.FullName).GetFiles(s))
                         {
-                            Console.WriteLine("Found file" + file.Name + "in" + file.DirectoryName);
+                            Console.WriteLine("Found file: " + file.Name + " in " + file.DirectoryName);
 
                             string parsedFileName = file.FullName.Split(new char[] { ':' })[1];
                             string parsedFilePath = parsedFileName.Split(new string[] { s },
@@ -231,22 +267,22 @@ namespace HW4_GenericsAndInterfaces
                             Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + parsedFilePath);
                             File.Copy(file.FullName, AppDomain.CurrentDomain.BaseDirectory + parsedFileName, true);
                             media.Add(file);
-
                         }
                     }
-
-                    media.AddRange(RecursivelySearchForImageType(directory.FullName, types));
+                    media.AddRange(SearchForFile(directory.FullName, types));
                 }
                 catch (UnauthorizedAccessException e)
                 {
                     Console.WriteLine("No access avaiable to" + directory.FullName);
                 }
-
-                return media;
-
             }
-
+            return media;
         }
+
+
+
+
+
 
 
     }
