@@ -5,8 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-
-
 namespace HW4_GenericsAndInterfaces
 {
     class Program
@@ -15,54 +13,71 @@ namespace HW4_GenericsAndInterfaces
         static void Main(string[] args)
         {
             int userChoice = 0;
-            PrintMenu(ref userChoice);
 
             List<FileInfo> video = new List<FileInfo>();
             List<FileInfo> audio = new List<FileInfo>();
             List<FileInfo> image = new List<FileInfo>();
 
 
-            //handle user input
-            if(userChoice == 1)
+            while (userChoice != 8)
             {
-                //call for video scan
-                VideoScan(ref video);
+                PrintMenu(ref userChoice);
 
-            } else if(userChoice == 2)
-            {
-                //call for audio scan
-                AudioScan(ref audio);
 
-            } else if(userChoice == 3)
-            {
-                //call for image scan
-                ImageScan(ref image);
+                //handle user input
+                if (userChoice == 1)
+                {
+                    //call for video scan
+                    VideoScan(ref video);
 
-            } else if(userChoice == 4)
-            {
-                //call for all types
-                VideoScan(ref video);
-                AudioScan(ref audio);
-                ImageScan(ref image);
+                }
+                else if (userChoice == 2)
+                {
+                    //call for audio scan
+                    AudioScan(ref audio);
 
-            } else if(userChoice == 5)
-            {
-                //call video library method
-            } else if(userChoice == 6)
-            {
-                //call audio library method
-            } else if(userChoice == 7)
-            {
-                //call image library method
-            } else if(userChoice == 8)
-            {
-                Console.WriteLine("Thank you for using this program. Program has ended.");
+                }
+                else if (userChoice == 3)
+                {
+                    //call for image scan
+                    ImageScan(ref image);
+
+                }
+                else if (userChoice == 4)
+                {
+                    //call for all types
+                    VideoScan(ref video);
+                    AudioScan(ref audio);
+                    ImageScan(ref image);
+
+                }
+                else if (userChoice == 5)
+                {
+                    //call video library method
+                    VideoLibrary(video);
+                }
+                else if (userChoice == 6)
+                {
+                    //call audio library method
+                    AudioLibrary(audio);
+
+
+                }
+                else if (userChoice == 7)
+                {
+                    //call image library method
+                    ImageLibrary(image);
+                }
+                else if (userChoice == 8)
+                {
+                    Console.WriteLine("Thank you for using this program. Program has ended.");
+                }
+                else
+                {
+                    Console.WriteLine("Invalid choice");
+                }
+
             }
-            else
-            {
-                Console.WriteLine("Invalid choice");
-            }
-
         }
 
          
@@ -158,19 +173,27 @@ namespace HW4_GenericsAndInterfaces
             image = SearchForFile(directory, imageTypes);
         }
 
-        void VideoLibrary(List<FileInfo> video)
+       public static void VideoLibrary(List<FileInfo> video)
         {
             int menuChoice;
 
             Console.WriteLine("------Library Information-------");
-            Console.WriteLine("Index: ");
-            Console.WriteLine("File name: ");
-            Console.WriteLine("File extension: ");
-            Console.WriteLine("Date last accessed: ");
-            //index
-            //file name
-            //file extension
-            //date last accessed
+
+            foreach (FileInfo i in video)
+            {
+                //print index and name
+                Console.Write("|{0}|: ", video.IndexOf(i));
+                Console.Write("\t" + i);
+
+                //print extentsion
+                string ext = i.Extension;
+                Console.Write("\t\t\t|" + ext.ToUpper() + "|");
+
+                //print date last acessed 
+                DateTime dt = i.LastAccessTime;
+                Console.Write("\t\t|Date Last Accessed: {0}|", dt);
+                Console.WriteLine(" ");
+            }
 
             Console.WriteLine(" ");
             Console.WriteLine("Library Menu");
@@ -180,73 +203,132 @@ namespace HW4_GenericsAndInterfaces
             Console.WriteLine("4. Touch File");     //user inputs an index to touch a file, opened and change date accessed  
             Console.WriteLine("5. Remove file");    //remove the file form the library not disk
             Console.WriteLine("6. Back to main menu");
+
+            Console.WriteLine("Enter choice: ");
             menuChoice = int.Parse(Console.ReadLine());
 
             //if statement handling user input 
+            if(menuChoice == 1)
+            {
 
+
+                foreach(FileInfo s in video)
+                {
+                    video.Sort();
+
+                    //print index and name
+                    Console.Write("|{0}|: ", video.IndexOf(s));
+                    Console.Write("\t" + s);
+
+                    //print extentsion
+                    string ext = s.Extension;
+                    Console.Write("\t\t\t|" + ext.ToUpper() + "|");
+
+                    //print date last acessed 
+                    DateTime dt = s.LastAccessTime;
+                    Console.Write("\t\t|Date Last Accessed: {0}|", dt);
+                    Console.WriteLine(" ");
+
+                    Console.WriteLine(s);
+                }
+            }
 
 
       
         }
 
-        void AudioLibrary(List <FileInfo> audio)
+       public static void AudioLibrary(List <FileInfo> audio)
         {
             int menuChoice;
-
-
-       
 
             Console.WriteLine("------Library Information-------");
 
             foreach (FileInfo i in audio)
             {
+                //print index and name
                 Console.Write("|{0}|: ", audio.IndexOf(i));
-                Console.Write(i);
+                Console.Write("\t" + i);
 
-               // if (i.Contains(".mov"))
-                //{
+                //print extentsion
+                string ext = i.Extension;
+                Console.Write("\t\t\t|" + ext.ToUpper() + "|");
 
-               // }
-                Console.Write("\t{0}");
-
-                Console.WriteLine("File name: ");
-                Console.WriteLine("File extension: ");
-                Console.WriteLine("Date last accessed: ");
-                //index
-                //file name
-                //file extension
-                //date last accessed
-
+                //print date last acessed 
+                DateTime dt = i.LastAccessTime;
+                Console.Write("\t\t|Date Last Accessed: {0}|", dt);
+                Console.WriteLine(" ");
             }
+
             Console.WriteLine(" ");
-            Console.WriteLine("Library Menu");
+            Console.WriteLine("----------Library Menu----------");
             Console.WriteLine("1. Sort by name");
             Console.WriteLine("2. Sort by extension");
             Console.WriteLine("3. Sort by date last accessed");
             Console.WriteLine("4. Touch File");     //user inputs an index to touch a file 
             Console.WriteLine("5. Remove file");    //remove the file form the library not disk
             Console.WriteLine("6. Back to main menu");
+            Console.WriteLine("Enter choice: ");
             menuChoice = int.Parse(Console.ReadLine());
 
             //if statement handling user input 
+            if (menuChoice == 1)
+            {
+
+
+
+                foreach (FileInfo s in audio)
+                {
+
+                    //print index and name
+                    Console.Write("|{0}|: ", audio.IndexOf(s));
+
+
+                    Console.Write("\t" + s);
+
+                    //print extentsion
+                    string ext = s.Extension;
+                    Console.Write("\t\t\t|" + ext.ToUpper() + "|");
+
+                    //print date last acessed 
+                    DateTime dt = s.LastAccessTime;
+                    Console.Write("\t\t|Date Last Accessed: {0}|", dt);
+                    Console.WriteLine(" ");
+
+                    Console.WriteLine(s);
+                }
+            }
+            else
+            {
+                Console.WriteLine("IDK");
+            }
+
+
+
+
+
         }
 
-        void ImageLibrary(List<FileInfo> image)
+        public static void ImageLibrary(List<FileInfo> image)
         {
             int menuChoice;
 
             Console.WriteLine("------Library Information-------");
 
-            
+                foreach (FileInfo i in image)
+                {
+                    //print index and name
+                    Console.Write("|{0}|: ", image.IndexOf(i));
+                    Console.Write("\t" + i);
 
-            Console.WriteLine("Index: ");
-            Console.WriteLine("File name: ");
-            Console.WriteLine("File extension: ");
-            Console.WriteLine("Date last accessed: ");
-            //index
-            //file name
-            //file extension
-            //date last accessed
+                    //print extentsion
+                    string ext = i.Extension;
+                    Console.Write("\t\t\t|" + ext.ToUpper() + "|");
+
+                    //print date last acessed 
+                    DateTime dt = i.LastAccessTime;
+                    Console.Write("\t\t|Date Last Accessed: {0}|", dt);
+                    Console.WriteLine(" ");
+                }
 
             Console.WriteLine(" ");
             Console.WriteLine("Library Menu");
