@@ -1,0 +1,9 @@
+diff a/HW4_GenericsAndInterfaces/HW4_GenericsAndInterfaces/Program.cs b/HW4_GenericsAndInterfaces/HW4_GenericsAndInterfaces/Program.cs	(rejected hunks)
+@@ -193,6 +193,7 @@
+                     media.AddRange(RecursivelySearchForImageType(directory.FullName, types));
+                 }
+                 catch (UnauthorizedAccessException e)
++                {
+                     Console.WriteLine("No access avaiable to" + directory.FullName);
+                 }
+ 

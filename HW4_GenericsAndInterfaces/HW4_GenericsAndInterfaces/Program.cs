@@ -14,10 +14,13 @@ namespace HW4_GenericsAndInterfaces
         {
             int userChoice = 0;
 
-            List<FileInfo> video = new List<FileInfo>();
-            List<FileInfo> audio = new List<FileInfo>();
-            List<FileInfo> image = new List<FileInfo>();
+            List<FileInfo> vid = new List<FileInfo>();
+            List<FileInfo> aud = new List<FileInfo>();
+            List<FileInfo> pic = new List<FileInfo>();
 
+            List<Video> video = new List<Video>();
+            List<Audio> audio = new List<Audio>();
+            List<Image> image = new List<Image>();
 
             while (userChoice != 8)
             {
@@ -28,7 +31,7 @@ namespace HW4_GenericsAndInterfaces
                 if (userChoice == 1)
                 {
                     //call for video scan
-                    VideoScan(ref video);
+                    VideoScan(video);
 
                 }
                 else if (userChoice == 2)
@@ -40,33 +43,33 @@ namespace HW4_GenericsAndInterfaces
                 else if (userChoice == 3)
                 {
                     //call for image scan
-                    ImageScan(ref image);
+                    ImageScan(image);
 
                 }
                 else if (userChoice == 4)
                 {
                     //call for all types
-                    VideoScan(ref video);
-                    AudioScan(ref audio);
-                    ImageScan(ref image);
+                    VideoScan(video);
+                    AudioScan( ref audio);
+                    ImageScan(image);
 
                 }
                 else if (userChoice == 5)
                 {
                     //call video library method
-                    VideoLibrary(video);
+                    VideoLibrary<Video>(vid, video);
                 }
                 else if (userChoice == 6)
                 {
                     //call audio library method
-                    AudioLibrary(audio);
+                    AudioLibrary<Audio>(aud, audio);
 
 
                 }
                 else if (userChoice == 7)
                 {
                     //call image library method
-                    ImageLibrary(image);
+                    ImageLibrary<Image>(pic, image);
                 }
                 else if (userChoice == 8)
                 {
@@ -80,10 +83,10 @@ namespace HW4_GenericsAndInterfaces
             }
         }
 
-         
 
-       //method prints main menu
-       public static void PrintMenu(ref int userChoice) {
+
+        //method prints main menu
+        public static void PrintMenu(ref int userChoice) {
 
             Console.WriteLine("Main Menu - Choose an number option: ");
             Console.WriteLine("1. Scan for videos (AVI, MOV)");
@@ -100,7 +103,7 @@ namespace HW4_GenericsAndInterfaces
 
         }
 
-       public static void VideoScan(ref List<FileInfo> video)
+        public static void VideoScan( List<Video> video)
         {
             string directory;
             Console.WriteLine("Enter a directory to search for: ");
@@ -119,11 +122,11 @@ namespace HW4_GenericsAndInterfaces
             videoTypes[1] = filemov;
 
             //call recursive function to get files 
-            video = SearchForFile(directory, videoTypes);
+              video = SearchForVideo(directory, videoTypes);
         }
 
 
-      public static void AudioScan(ref List<FileInfo> audio)
+        public static void AudioScan( ref List<Audio> audio)
         {
             string directory;
             Console.WriteLine("Enter a directory to search for: ");
@@ -147,11 +150,11 @@ namespace HW4_GenericsAndInterfaces
             audioTypes[2] = filempFour;
 
             //call recursive function to get files 
-            audio = SearchForFile(directory, audioTypes);
+            audio = SearchForAudio(directory, audioTypes);
         }
 
 
-       public static void ImageScan(ref List<FileInfo> image)
+        public static void ImageScan(List<Image> image)
         {
             string directory;
             Console.WriteLine("Enter a directory to search for: ");
@@ -170,10 +173,10 @@ namespace HW4_GenericsAndInterfaces
             imageTypes[1] = filepng;
 
             //call recursive file finding method
-            image = SearchForFile(directory, imageTypes);
+            image = SearchForImage(directory, imageTypes);
         }
 
-       public static void VideoLibrary(List<FileInfo> video)
+        public static void VideoLibrary<T>(List<FileInfo> video, List<Video> vid)
         {
             int menuChoice;
 
@@ -207,55 +210,90 @@ namespace HW4_GenericsAndInterfaces
             Console.WriteLine("Enter choice: ");
             menuChoice = int.Parse(Console.ReadLine());
 
+           
             //if statement handling user input 
-            if(menuChoice == 1)
+            if (menuChoice == 1)
             {
+                Console.WriteLine("Sorting by name");
 
+                vid.Sort();
 
-                foreach(FileInfo s in video)
+                foreach (FileInfo s in video)
                 {
-                    video.Sort();
 
                     //print index and name
                     Console.Write("|{0}|: ", video.IndexOf(s));
+
+
                     Console.Write("\t" + s);
 
                     //print extentsion
                     string ext = s.Extension;
                     Console.Write("\t\t\t|" + ext.ToUpper() + "|");
 
-                    //print date last acessed 
+                    //    //print date last acessed 
                     DateTime dt = s.LastAccessTime;
                     Console.Write("\t\t|Date Last Accessed: {0}|", dt);
                     Console.WriteLine(" ");
-
-                    Console.WriteLine(s);
                 }
+            }
+            else if (menuChoice == 2)
+            {
+                Console.WriteLine("Sort by Extension");
+            }
+            else if (menuChoice == 3)
+            {
+                Console.WriteLine("Sort by date last accessed");
+            }
+            else if (menuChoice == 4)
+            {
+                Console.WriteLine("Touch file");
+            }
+            else if (menuChoice == 5)
+            {
+                Console.WriteLine("Remove file");
+            }
+            else if (menuChoice == 6)
+            {
+                Console.WriteLine("Back to main menu");
+            }
+            else
+            {
+                Console.WriteLine("Invalid input");
             }
 
 
-      
+
         }
 
-       public static void AudioLibrary(List <FileInfo> audio)
+        public static void AudioLibrary<T>(List<FileInfo> audio, List<Audio> sound) where T : MediaInterface, new()
         {
             int menuChoice;
 
+
             Console.WriteLine("------Library Information-------");
+
+
+            Audio ex = new Audio();
 
             foreach (FileInfo i in audio)
             {
+                Console.WriteLine(ex.File);
+
+
                 //print index and name
                 Console.Write("|{0}|: ", audio.IndexOf(i));
-                Console.Write("\t" + i);
+                Console.Write("\t" + ex.File);
 
-                //print extentsion
+               // //print extentsion
                 string ext = i.Extension;
-                Console.Write("\t\t\t|" + ext.ToUpper() + "|");
+               Console.Write("\t\t\t|" + ext.ToUpper() + "|");
+
+               ex.DateAdded = i.LastAccessTime;
 
                 //print date last acessed 
-                DateTime dt = i.LastAccessTime;
-                Console.Write("\t\t|Date Last Accessed: {0}|", dt);
+               DateTime dt = i.LastAccessTime;
+                Console.Write("\t\t|Date Last Accessed: {0}|", ex.DateAdded);
                 Console.WriteLine(" ");
             }
 
@@ -273,8 +311,9 @@ namespace HW4_GenericsAndInterfaces
             //if statement handling user input 
             if (menuChoice == 1)
             {
+                Console.WriteLine("Sorting by name");
 
-
+                sound.Sort();
 
                 foreach (FileInfo s in audio)
                 {
@@ -289,18 +328,34 @@ namespace HW4_GenericsAndInterfaces
                     string ext = s.Extension;
                     Console.Write("\t\t\t|" + ext.ToUpper() + "|");
 
-                    //print date last acessed 
+                //    //print date last acessed 
                     DateTime dt = s.LastAccessTime;
                     Console.Write("\t\t|Date Last Accessed: {0}|", dt);
                     Console.WriteLine(" ");
-
-                    Console.WriteLine(s);
                 }
+            }
+            else if(menuChoice == 2)
+            {
+                Console.WriteLine("Sort by Extension");
+            } else if(menuChoice == 3)
+            {
+                Console.WriteLine("Sort by date last accessed");
+            } else if(menuChoice == 4)
+            {
+                Console.WriteLine("Touch file");
+            } else if(menuChoice == 5)
+            {
+                Console.WriteLine("Remove file");
+            }
+            else if(menuChoice == 6)
+            {
+                Console.WriteLine("Back to main menu");
             }
             else
             {
-                Console.WriteLine("IDK");
+                Console.WriteLine("Invalid input");
             }
+            
 
 
 
@@ -308,27 +363,27 @@ namespace HW4_GenericsAndInterfaces
 
         }
 
-        public static void ImageLibrary(List<FileInfo> image)
+        public static void ImageLibrary<T>(List<FileInfo> image, List<Image> picture)
         {
             int menuChoice;
 
             Console.WriteLine("------Library Information-------");
 
-                foreach (FileInfo i in image)
-                {
-                    //print index and name
-                    Console.Write("|{0}|: ", image.IndexOf(i));
-                    Console.Write("\t" + i);
+            foreach (FileInfo i in image)
+            {
+                //print index and name
+                Console.Write("|{0}|: ", image.IndexOf(i));
+                Console.Write("\t" + i);
 
-                    //print extentsion
-                    string ext = i.Extension;
-                    Console.Write("\t\t\t|" + ext.ToUpper() + "|");
+                //print extentsion
+                string ext = i.Extension;
+                Console.Write("\t\t\t|" + ext.ToUpper() + "|");
 
-                    //print date last acessed 
-                    DateTime dt = i.LastAccessTime;
-                    Console.Write("\t\t|Date Last Accessed: {0}|", dt);
-                    Console.WriteLine(" ");
-                }
+                //print date last acessed 
+                DateTime dt = i.LastAccessTime;
+                Console.Write("\t\t|Date Last Accessed: {0}|", dt);
+                Console.WriteLine(" ");
+            }
 
             Console.WriteLine(" ");
             Console.WriteLine("Library Menu");
@@ -341,50 +396,178 @@ namespace HW4_GenericsAndInterfaces
             menuChoice = int.Parse(Console.ReadLine());
 
             //if statement handling user input 
+            //if statement handling user input 
+            if (menuChoice == 1)
+            {
+                Console.WriteLine("Sorting by name");
+
+                picture.Sort();
+
+                foreach (FileInfo s in image)
+                {
+
+                    //print index and name
+                    Console.Write("|{0}|: ", image.IndexOf(s));
+
+
+                    Console.Write("\t" + s);
+
+                    //print extentsion
+                    string ext = s.Extension;
+                    Console.Write("\t\t\t|" + ext.ToUpper() + "|");
+
+                    //    //print date last acessed 
+                    DateTime dt = s.LastAccessTime;
+                    Console.Write("\t\t|Date Last Accessed: {0}|", dt);
+                    Console.WriteLine(" ");
+                }
+            }
+            else if (menuChoice == 2)
+            {
+                Console.WriteLine("Sort by Extension");
+            }
+            else if (menuChoice == 3)
+            {
+                Console.WriteLine("Sort by date last accessed");
+            }
+            else if (menuChoice == 4)
+            {
+                Console.WriteLine("Touch file");
+            }
+            else if (menuChoice == 5)
+            {
+                Console.WriteLine("Remove file");
+            }
+            else if (menuChoice == 6)
+            {
+                Console.WriteLine("Back to main menu");
+            }
+            else
+            {
+                Console.WriteLine("Invalid input");
+            }
         }
 
 
+        //searches for audio 
+        static List<Audio> SearchForAudio(string path, string[] types) {
 
-        //method finds files of certain type in folder 
-        public static List<FileInfo> SearchForFile(string path, string[] types)
-        {
-
-            List<FileInfo> media = new List<FileInfo>();
+            // List<FileInfo> media = new List<FileInfo>();
+            List<Audio> med = new List<Audio>();
 
             foreach (DirectoryInfo directory in new DirectoryInfo(path).GetDirectories())
             {
                 try
                 {
+
                     foreach (string s in types)
                     {
+
                         foreach (FileInfo file in new DirectoryInfo(directory.FullName).GetFiles(s))
                         {
-                            Console.WriteLine("Found file: " + file.Name + " in " + file.DirectoryName);
+                            Console.WriteLine("Found file " + file.Name + " in " + file.DirectoryName);
 
                             string parsedFileName = file.FullName.Split(new char[] { ':' })[1];
                             string parsedFilePath = parsedFileName.Split(new string[] { s },
                                 StringSplitOptions.RemoveEmptyEntries)[0];
                             parsedFilePath = parsedFilePath.Remove(parsedFilePath.LastIndexOf("\\"));
-                            Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + parsedFilePath);
-                            File.Copy(file.FullName, AppDomain.CurrentDomain.BaseDirectory + parsedFileName, true);
-                            media.Add(file);
+                            med.Add( new Audio() { Path = file.FullName});
                         }
                     }
-                    media.AddRange(SearchForFile(directory.FullName, types));
+
+                    med.AddRange(SearchForAudio(directory.FullName, types));
+                }
+                catch (UnauthorizedAccessException e)
+                {
+                    Console.WriteLine("No access avaiable to" + directory.FullName);
+                }
+                
+            }
+            return med;
+        }
+
+
+        //searches for video 
+        static List<Video> SearchForVideo(string path, string[] types)
+        {
+
+            // List<FileInfo> media = new List<FileInfo>();
+            List<Video> med = new List<Video>();
+
+            foreach (DirectoryInfo directory in new DirectoryInfo(path).GetDirectories())
+            {
+                try
+                {
+
+                    foreach (string s in types)
+                    {
+
+                        foreach (FileInfo file in new DirectoryInfo(directory.FullName).GetFiles(s))
+                        {
+                            Console.WriteLine("Found file " + file.Name + " in " + file.DirectoryName);
+
+                            string parsedFileName = file.FullName.Split(new char[] { ':' })[1];
+                            string parsedFilePath = parsedFileName.Split(new string[] { s },
+                                StringSplitOptions.RemoveEmptyEntries)[0];
+                            parsedFilePath = parsedFilePath.Remove(parsedFilePath.LastIndexOf("\\"));
+                            med.Add(new Video() { File = file });
+
+                        }
+                    }
+
+                    med.AddRange(SearchForVideo(directory.FullName, types));
                 }
                 catch (UnauthorizedAccessException e)
                 {
                     Console.WriteLine("No access avaiable to" + directory.FullName);
                 }
             }
-            return media;
+            return med;
+        }
+
+        //searches for image 
+        static List<Image> SearchForImage(string path, string[] types)
+        {
+
+            List<Image> med = new List<Image>();
+
+            foreach (DirectoryInfo directory in new DirectoryInfo(path).GetDirectories())
+            {
+                try
+                {
+
+                    foreach (string s in types)
+                    {
+
+                        foreach (FileInfo file in new DirectoryInfo(directory.FullName).GetFiles(s))
+                        {
+                            Console.WriteLine("Found file " + file.Name + " in " + file.DirectoryName);
+
+                            string parsedFileName = file.FullName.Split(new char[] { ':' })[1];
+                            string parsedFilePath = parsedFileName.Split(new string[] { s },
+                                StringSplitOptions.RemoveEmptyEntries)[0];
+                            parsedFilePath = parsedFilePath.Remove(parsedFilePath.LastIndexOf("\\"));
+                            med.Add(new Image() { File = file });
+                        }
+                    }
+
+                    med.AddRange(SearchForImage(directory.FullName, types));
+                    
+                }
+                
+                catch (UnauthorizedAccessException e)
+                {
+                    Console.WriteLine("No access avaiable to" + directory.FullName);
+                }
+            }
+            return med;
+
+
+
         }
 
 
 
 
-
-
-
-    }
+    } 
 }

@@ -26,16 +26,7 @@ namespace HW4_GenericsAndInterfaces
             collection.Add(obj);
         }
 
-
-
-        public void OpenOrPlay(T file)
-        {
-            System.Media.SoundPlayer player = new System.Media.SoundPlayer(file.Path);
-            player.Play();
-        }
-
-
-
+        
 
     }
 }

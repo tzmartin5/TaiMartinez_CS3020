@@ -18,5 +18,7 @@ namespace HW4_GenericsAndInterfaces
         FileType FileType { get; set; }
         MediaType MediaType { get; set; }
         DateTime DateAdded { get; set; }
+
+       
     }
 }
