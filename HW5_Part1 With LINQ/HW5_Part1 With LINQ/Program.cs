@@ -1,3 +1,16 @@
+///<summary>Program creates a grade organizer based on semesters each with 5 courses. 
+///Users are able to input multiple number of semester to compare and organize grades.
+///The program will prompt the user to input the names of the classes, the professor for that class,
+///and that class for all 5 classes for each semester.
+///Program then will ask the user to choose: 
+///1. to find the average of the grades for the semester 
+///2. find the highest grade of the semester
+///3. find the lowest grade of the semester
+///4. find the class information based on a certain professor
+///This is the solution using LINQ
+/// </summary>
+
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
