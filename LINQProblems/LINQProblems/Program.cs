@@ -57,14 +57,9 @@ namespace LINQProblems
 
             List<Student> a_students = new List<Student>();
 
-            foreach (Student s in students)
-            {
-                if (s.MathGrade >= 90.0
-                    && s.HistoryGrade >= 90.0
-                    && s.ScienceGrade >= 90.0
-                    && s.EnglishGrade >= 90.0)
-                        a_students.Add(s);
-            }
+            a_students = students.Where(x => x.MathGrade >= 90.0 && x.HistoryGrade >= 90.0
+           && x.ScienceGrade >= 90.0 && x.EnglishGrade >= 90.0).ToList();
+
             return a_students;
         }
 
