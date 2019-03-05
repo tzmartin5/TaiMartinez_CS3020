@@ -85,13 +85,9 @@ namespace LINQProblems
             };
 
             Item highestEarner = new Item("TEMP", 0, 0);
-            for (int i = 0; i < items.Count; i++)
-            {
-                if (items[i].ItemPrice * items[i].NumberOfSales > highestEarner.ItemPrice * highestEarner.NumberOfSales)
-                {
-                    highestEarner = items[i];
-                }
-            }
+
+            highestEarner = items.Aggregate((agg, next) => next.ItemPrice * next.NumberOfSales > agg.ItemPrice * agg.NumberOfSales ? next : agg);
+
             return highestEarner;
         }
 
