@@ -30,22 +30,9 @@ namespace LINQProblems
             List<string> b = new List<string>() { "d", "a", "r", "r", "a", "s" };
             List<string> result = new List<string>();
 
-            for (int i = 0; i < a.Count; i++)
-            {
-                int exists = 0;
-                for (int j = 0; j < b.Count; j++)
-                {
-                    if (b[j] == a[i])
-                    {
-                        exists = 1;
-                    }
-                }
-                if (exists == 0)
-                {
-                    result.Add(a[i]);
-                }
-            }
-            return result;
+            var answer = a.Where(x => !b.Any(t => t.Contains(x))).ToList<string>();
+
+            return answer;
         }
 
         /// <summary>
