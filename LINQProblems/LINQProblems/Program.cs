@@ -166,23 +166,18 @@ namespace LINQProblems
         /// </summary>
         public static List<int> GetFibonacciNumbers()
         {
-            List<int> input = new List<int>();
-            for (int i = 1; i < 40; i += 5)
-                input.Add(i);
             List<int> results = new List<int>();
-            
-            foreach(int i in input)
-            {
-                results.Add(Fibonacci(i));
-            }
-            
-            //Local function for recursive search
-            int Fibonacci(int i)
-            {
-                if (i == 1 || i == 2)
-                    return 1;
-                return Fibonacci(i - 1) + Fibonacci(i - 2);
-            }
+
+            //generates the sequence 
+            List<int> input = Enumerable.Range(1, 39).Where((x, y) => y % 5 == 0).ToList();
+
+            //foreach i in input list
+            input.ForEach(f => results.Add(Fibonacci(f)));
+
+            //local fibonacci function
+            int Fibonacci(int i) => i <= 1 ? i : Fibonacci(i - 1) + Fibonacci(i - 2);
+
+
             return results;
         }
 
