@@ -113,33 +113,19 @@ namespace LINQProblems
             Dictionary<string, List<PhoneBookEntry>> results = new Dictionary<string, List<PhoneBookEntry>>();
 
 
-            results.Add("Name", new List<PhoneBookEntry>());
-            foreach (PhoneBookEntry entry in phoneBook)
-            {
-                if (entry.Name == "Josh Jackson")
-                    results["Name"].Add(entry);
-            }
 
-            results.Add("LastName", new List<PhoneBookEntry>());
-            foreach (PhoneBookEntry entry in phoneBook)
-            {
-                if (entry.LastName == "Jones")
-                    results["LastName"].Add(entry);
-            }
+            var fullName = phoneBook.Where(t => t.Name.Contains("Josh Jackson")).ToList();
+            results.Add("Name", fullName);
 
-            results.Add("City", new List<PhoneBookEntry>());
-            foreach (PhoneBookEntry entry in phoneBook)
-            {
-                if (entry.City == "Colorado Springs")
-                    results["City"].Add(entry);
-            }
+            var lastName = phoneBook.Where(t => t.Name.Contains("Jones")).ToList();
+            results.Add("LastName", lastName);
 
-            results.Add("PhoneAreaCode", new List<PhoneBookEntry>());
-            foreach (PhoneBookEntry entry in phoneBook)
-            {
-                if (entry.PhoneNumber.Substring(0, 3) == "617")
-                    results["PhoneAreaCode"].Add(entry);
-            }
+            var city = phoneBook.Where(t => t.Address.Contains("Colorado Springs")).ToList();
+            results.Add("City", city);
+
+            var areaCode = phoneBook.Where(t => t.PhoneNumber.Contains("617")).ToList();
+            results.Add("PhoneAreaCode", areaCode);
+
             return results;
         }
 
