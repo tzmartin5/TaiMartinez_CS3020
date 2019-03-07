@@ -189,13 +189,14 @@ namespace LINQProblems
         {
             int primeSum = 0;
 
+            //find the primes between 2 and 1,000
             var primes =
             Enumerable.Range(2, 1000 - 1)
             .Where(number =>
             Enumerable.Range(2, (int)Math.Sqrt(number) - 1)
             .All(divisor => number % divisor != 0));
 
-
+            //sums the primes 
             primeSum = primes.Sum();
 
             return primeSum;
