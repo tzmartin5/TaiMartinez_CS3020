@@ -188,21 +188,16 @@ namespace LINQProblems
         public static int SumPrimes()
         {
             int primeSum = 0;
-            for (int i = 2; i < 1000; i++)
-            {
-                bool isPrime = true;
-                for (int c = 2; c < i / 2 + 1; c++)
-                {
-                    if (i % c == 0)
-                    {
-                        isPrime = false;
-                    }
-                }
-                if (isPrime == true)
-                {
-                    primeSum += i;
-                }
-            }
+
+            var primes =
+            Enumerable.Range(2, 1000 - 1)
+            .Where(number =>
+            Enumerable.Range(2, (int)Math.Sqrt(number) - 1)
+            .All(divisor => number % divisor != 0));
+
+
+            primeSum = primes.Sum();
+
             return primeSum;
         }
     }
