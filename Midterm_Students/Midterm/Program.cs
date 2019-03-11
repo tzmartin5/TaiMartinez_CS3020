@@ -12,6 +12,8 @@ namespace Midterm
         {
             int menuSelection = 0;
             VendingMachine machine = new VendingMachine();
+
+        Start:
             do
             {
                 Console.WriteLine("Please enter an integer for the option you want to select:");
@@ -20,7 +22,16 @@ namespace Midterm
                 Console.WriteLine("3. List toy options for kids under 7.");
                 Console.WriteLine("4. Exit Program");
 
-                menuSelection = int.Parse(Console.ReadLine());
+                //handles invalid character input 
+                try
+                {
+                    menuSelection = int.Parse(Console.ReadLine());
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Invalid Character.Try again with a number 1-4");
+                    goto Start;
+                }
 
                 List<VendingMachineOption> exclusions = new List<VendingMachineOption>();
 
@@ -30,8 +41,12 @@ namespace Midterm
                         machine.PrintVendingMachine(new List<VendingMachineOption>());
                         break;
                     case 2:
-                        foreach(VendingMachineOption o in machine)
+
+
+
+                        foreach (VendingMachineOption o in machine)
                         {
+
                             if (o is Food || o is Drink)
                             {
                                 if ((o as Food)?.CalorieCount > 100 || (o as Drink)?.CalorieCount > 100)
@@ -67,9 +82,14 @@ namespace Midterm
                         Console.WriteLine("Thankyou for using this program!");
                         Console.ReadKey();
                         break;
+                    default:
+                        Console.WriteLine("Invalid Number. Please try again");
+                        break;
                 }
             } while (menuSelection != 4);
         }
+
+       
 
         static void PressAnyKeyToContinue()
         {
