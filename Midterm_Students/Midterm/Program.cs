@@ -42,18 +42,19 @@ namespace Midterm
                         break;
                     case 2:
 
+                      var gettype = machine.Where(x => x.GetType() == typeof(Food) || x.GetType() == typeof(Drink));
 
 
                         foreach (VendingMachineOption o in machine)
                         {
 
                             if (o is Food || o is Drink)
-                            {
-                                if ((o as Food)?.CalorieCount > 100 || (o as Drink)?.CalorieCount > 100)
+                           {
+                                if ((gettype as Food)?.CalorieCount > 100 || (gettype as Drink)?.CalorieCount > 100)
                                 {
                                     exclusions.Add(o);
                                 }
-                            }
+                           }
                             else
                             {
                                 exclusions.Add(o);
@@ -62,11 +63,15 @@ namespace Midterm
                         machine.PrintVendingMachine(exclusions);
                         break;
                     case 3:
+
+                        var electType = machine.Where(x => x.GetType() == typeof(NonElectronic) || x.GetType() == typeof(Electronic));
+
+
                         foreach (VendingMachineOption o in machine)
                         {
                             if (o is NonElectronic || o is Electronic)
                             {
-                                if ((o as NonElectronic)?.AgeRequirement >= 7 || (o as Electronic)?.AgeRequirement >= 7)
+                                if ((electType as NonElectronic)?.AgeRequirement >= 7 || (electType as Electronic)?.AgeRequirement >= 7)
                                 {
                                     exclusions.Add(o);
                                 }

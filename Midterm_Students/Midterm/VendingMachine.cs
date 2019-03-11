@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Midterm
 {
-    class VendingMachine : IEnumerable
+    class VendingMachine : IEnumerable<VendingMachineOption>
     {
         VendingMachineOption[,] options = new VendingMachineOption[5,4];
 
@@ -67,9 +67,9 @@ namespace Midterm
             return s.PadLeft(count + left).PadRight(15);
         }
 
-        public IEnumerator GetEnumerator()
+        public IEnumerator<VendingMachineOption> GetEnumerator()
         {
-            return options.GetEnumerator();
+            return options.Cast<VendingMachineOption>().GetEnumerator();
         }
 
 
