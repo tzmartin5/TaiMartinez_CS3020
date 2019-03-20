@@ -44,17 +44,19 @@ namespace Midterm
 
                       var gettype = machine.Where(x => x.GetType() == typeof(Food) || x.GetType() == typeof(Drink));
 
+                       // List<VendingMachineOption> example = machine.Where(x => (gettype as Food).CalorieCount > 100 || (gettype as Drink).CalorieCount > 100).ToList();//.Cast<VendingMachineOption>;
+
 
                         foreach (VendingMachineOption o in machine)
                         {
 
                             if (o is Food || o is Drink)
-                           {
+                            {
                                 if ((gettype as Food)?.CalorieCount > 100 || (gettype as Drink)?.CalorieCount > 100)
                                 {
                                     exclusions.Add(o);
                                 }
-                           }
+                            }
                             else
                             {
                                 exclusions.Add(o);
