@@ -59,8 +59,8 @@ namespace CollisionDetection
             }
             /**********************************************************************/
             /* SWITCH THESE LINES OF CODE TO TEST THE DIFFERENT METHODS */
-            CollisionDetection();
-            //CollisionDetectionParallel();
+           //CollisionDetection();
+            CollisionDetectionParallel();
             /**********************************************************************/
             DrawSquares(map);
 
@@ -102,7 +102,35 @@ namespace CollisionDetection
         /// </summary>
         public void CollisionDetectionParallel()
         {
-         
+            //Reset the color of squares to black.
+            for (int i = 0; i < squares.Count; i++) //leave the same
+               squares[i].Color = Color.Black;      //leave the same
+
+            List<Task> tasks = new List<Task>();
+
+
+            Parallel.For(0, squares.Count, i =>
+            {
+                Task t = Task.Run(() =>
+                {
+                    Parallel.For(0, squares.Count, j =>
+                   {
+                       if (squares[i] != squares[j] && squares[i].IsCollidingWith(squares[j]))
+                       {
+                           squares[i].Color = Color.Red;
+                           squares[j].Color = Color.Red;
+                       }
+
+                   });
+
+                });
+
+                foreach (Task ta in tasks)
+                {
+                    t.Wait();
+                }
+            });
+        
         }
 
         /// <summary>
