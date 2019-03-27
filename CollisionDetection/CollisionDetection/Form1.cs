@@ -113,7 +113,7 @@ namespace CollisionDetection
             {
                 Task t = Task.Run(() =>
                 {
-                    Parallel.For(0, squares.Count, j =>
+                    Parallel.For(i, squares.Count, j =>
                    {
                        if (squares[i] != squares[j] && squares[i].IsCollidingWith(squares[j]))
                        {
