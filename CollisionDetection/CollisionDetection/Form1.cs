@@ -104,33 +104,37 @@ namespace CollisionDetection
         {
             //Reset the color of squares to black.
             for (int i = 0; i < squares.Count; i++) //leave the same
-               squares[i].Color = Color.Black;      //leave the same
+                squares[i].Color = Color.Black;      //leave the same
 
             List<Task> tasks = new List<Task>();
 
+            for (int i = 0; i < squares.Count - 1; i += 20) {
+                int h = i;
+                tasks.Add(Task.Factory.StartNew(() =>
+                {
 
-            Parallel.For(0, squares.Count, i =>
+                    for (int x = h; x < h + 20; x++)
+                    {
+
+                        for (int j = x + 1; j < squares.Count; j++)
+                        {
+
+                            if (squares[x].IsCollidingWith(squares[j]))
+                            {
+                                squares[x].Color = Color.Red;
+                                squares[j].Color = Color.Red;
+                            }
+                        }
+
+                    }
+                }));
+            }
+
+            foreach (Task ta in tasks)
             {
-                Task t = Task.Run(() =>
-                {
-                    Parallel.For(i, squares.Count, j =>
-                   {
-                       if (squares[i] != squares[j] && squares[i].IsCollidingWith(squares[j]))
-                       {
-                           squares[i].Color = Color.Red;
-                           squares[j].Color = Color.Red;
-                       }
+                ta.Wait();
+            }
 
-                   });
-
-                });
-
-                foreach (Task ta in tasks)
-                {
-                    t.Wait();
-                }
-            });
-        
         }
 
         /// <summary>
