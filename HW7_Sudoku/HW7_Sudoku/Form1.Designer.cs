@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -121,6 +122,10 @@
             this.NewGameButton = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.mnuInput = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuInput.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitter1
@@ -891,6 +896,28 @@
             this.label5.Text = "Choose Difficulty";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // mnuInput
+            // 
+            this.mnuInput.ImageScalingSize = new System.Drawing.Size(40, 40);
+            this.mnuInput.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.openToolStripMenuItem});
+            this.mnuInput.Name = "mnuInput";
+            this.mnuInput.Size = new System.Drawing.Size(361, 151);
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(360, 46);
+            this.fileToolStripMenuItem.Text = "&File";
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(360, 46);
+            this.openToolStripMenuItem.Text = "&Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
@@ -991,6 +1018,7 @@
             this.Controls.Add(this.splitter1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.mnuInput.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1091,6 +1119,9 @@
         private System.Windows.Forms.Button NewGameButton;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ContextMenuStrip mnuInput;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
     }
 }
 
