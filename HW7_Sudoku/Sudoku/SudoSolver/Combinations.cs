@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace HW7_Sudoku
+namespace SudoSolver
 {
     public class Combinations<T>
     {
@@ -40,6 +39,4 @@ namespace HW7_Sudoku
             yield break;
         }
     }
-
 }
-

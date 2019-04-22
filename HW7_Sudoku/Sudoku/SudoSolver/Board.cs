@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Linq;
 
-namespace HW7_Sudoku
+namespace SudoSolver
 {
-   public class Board
+    public class Board
     {
         Square[,] board;
 
@@ -161,7 +158,7 @@ namespace HW7_Sudoku
                     }
                 }
             }
-
+            
             // If logical methods didn't provide a solution, move on to depth-first search of solutions
             if (IsSolved() == false)
             {
@@ -209,7 +206,7 @@ namespace HW7_Sudoku
             {
                 Square candidate = null;
 
-                foreach (var square in board)
+                foreach(var square in board)
                 {
                     if (square.HasNumber == false && (candidate == null || square.CountAvailable() < candidate.CountAvailable()))
                         candidate = square;
@@ -237,10 +234,5 @@ namespace HW7_Sudoku
             }
             return true;
         }
-
-
-
-
-
     }
 }

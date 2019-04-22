@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace HW7_Sudoku
+namespace SudoSolver
 {
-   public class Area
+    /// <summary>
+    /// A Row, Column, or Region on an m by m sudoku board, where each area has m squares.
+    /// </summary>
+    public class Area
     {
         protected Square[] squares;
         protected Board board;
@@ -81,7 +82,7 @@ namespace HW7_Sudoku
         }
 
         public void checkEachEmptySquare()
-        {
+        { 
             // Scans for each number missing from the area and tries to place it.
             var openingsByNumber = new Dictionary<int, List<Square>>();
 
@@ -160,7 +161,6 @@ namespace HW7_Sudoku
                 }
             }
 
-            // checkForChains(openingsByNumber);
         }
 
         /// <summary>
@@ -169,7 +169,7 @@ namespace HW7_Sudoku
         /// those squares since they can't possibly go there.
         /// </summary>
         /// <param name="openingsByNumber">A dictionary mapping numbers to the squares they can go on.</param>
-        public void checkForChains(Dictionary<int, List<Square>> openingsByNumber)
+        public void checkForChains(Dictionary<int,List<Square>> openingsByNumber)
         {
             var numberList = openingsByNumber.Keys.ToList();
 
@@ -190,7 +190,7 @@ namespace HW7_Sudoku
                         {
                             if (!cmbList.Contains(num))
                             {
-                                foreach (var square in squareUnion)
+                                foreach(var square in squareUnion)
                                 {
                                     // If square isn't already blocked, block it, and record it as a change made
                                     if (square.IsAvailable(num))
@@ -258,7 +258,7 @@ namespace HW7_Sudoku
             {
                 for (var col = (region % n) * n; col < ((region % n) + 1) * n; col++)
                 {
-                    squares[counter] = board[row, col];
+                    squares[counter] =  board[row, col];
                     squares[counter].Region = this;
                     counter++;
                 }
@@ -267,7 +267,4 @@ namespace HW7_Sudoku
             initAvailabilityLists();
         }
     }
-
-
 }
-

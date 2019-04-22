@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Collections;
 
-
-namespace HW7_Sudoku
+namespace SudoSolver
 {
+    /// <summary>
+    /// A square on the Sudoku board that can have a number on it or be blank.
+    /// </summary>
     public class Square
     {
         public bool HasNumber { get; set; }
@@ -131,7 +129,7 @@ namespace HW7_Sudoku
         {
             int count = 0;
             for (var i = 0; i < M; i++)
-            {
+            { 
                 if (isAvailable[i]) count++;
             }
             return count;
@@ -151,8 +149,4 @@ namespace HW7_Sudoku
             return HasNumber ? Number.ToString() : "";
         }
     }
-
-
-
 }
-

@@ -1,24 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Drawing;
 
-namespace HW7_Sudoku
+namespace SudoSolver
 {
-    public partial class Form1 : Form
+    public partial class frmMain : Form
     {
-
         TextBox[,] boardTextBoxes;
         Panel boardPanel;
 
-        public Form1()
+        public frmMain()
         {
             InitializeComponent();
         }
@@ -35,11 +27,10 @@ namespace HW7_Sudoku
 
             if (boardTextBoxes != null && boardTextBoxes.GetLength(0) == m)
             {
-                // We can just re-use the existing board after clearing the squares
                 foreach (var box in boardTextBoxes)
                 {
                     box.Text = "";
-                  //  styleAsDefault(box);
+                    styleAsDefault(box);
                 }
             }
             else
@@ -84,6 +75,7 @@ namespace HW7_Sudoku
                         boardPanel.Controls.Add(boardTextBoxes[row, col]);
                     }
                 }
+
                 ResumeLayout();
             }
         }
@@ -107,7 +99,6 @@ namespace HW7_Sudoku
 
         private void setTextFromBoard(Board board, bool isSolution = false)
         {
-            // If we are loading a board for the first time (not just filling in the solution) draw the board
             if (!isSolution)
                 generateBoard(board.N, board.M);
 
@@ -171,7 +162,12 @@ namespace HW7_Sudoku
 
         private void loadTestBoardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            loadBoardFromFile(@"..\..\..\..\Saved Puzzles\HardestBoard.sudo", "HardestBoard.sudo");
+            int[,] board = new int[9, 9];
+
+          //  BoardGenerator.makeBoard(board);
+
+
+            loadBoardFromFile(@"..\..\..\..\Saved Puzzles\HardestBoard.sudo");
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
@@ -186,33 +182,25 @@ namespace HW7_Sudoku
 
         private void loadPuzzleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (ofdOpenExisting.ShowDialog() == DialogResult.OK)
+            if(ofdOpenExisting.ShowDialog() == DialogResult.OK)
             {
-                loadBoardFromFile(ofdOpenExisting.FileName, ofdOpenExisting.SafeFileName);
+                loadBoardFromFile(ofdOpenExisting.FileName);
             }
         }
 
-        private void loadBoardFromFile(string fileName, string safeFileName)
+        private void loadBoardFromFile(string fileName)
         {
-            updateTitle(safeFileName);
-
             using (var reader = new StreamReader(fileName))
             {
                 // Read size number - square root of number of rows and columns (3 in a 9x9)
                 var n = Convert.ToInt32(reader.ReadLine());
-                var m = n * n;
+                var m = n*n;
 
                 var board = new Board(n);
 
                 for (var i = 0; i < m; i++)
                 {
                     var rowText = reader.ReadLine();
-
-                    // Skip lines that start with '#'. These are comment lines.
-                    while (rowText.Trim().StartsWith("#"))
-                    {
-                        rowText = reader.ReadLine();
-                    }
 
                     var split = rowText.Split('|');
 
@@ -225,41 +213,8 @@ namespace HW7_Sudoku
                         catch (FormatException) { } // Ignore format exception for blanks
                     }
                 }
-
+                
                 setTextFromBoard(board);
-            }
-        }
-
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (boardTextBoxes == null)
-            {
-                MessageBox.Show("You can't save until you've created a puzzle to save.");
-                return;
-            }
-
-            if (sfdSave.ShowDialog() == DialogResult.OK)
-            {
-                var board = makeBoardFromText();
-                var spaces = (board.M > 9) ? "  " : " "; // To help make the columns line up propery in the text file.
-                using (var saveStream = new StreamWriter(sfdSave.FileName))
-                {
-                    // First line is the square root of the board dimension
-                    saveStream.WriteLine(board.N);
-
-                    for (var i = 0; i < board.M; i++)
-                    {
-                        for (var j = 0; j < board.M; j++)
-                        {
-                            saveStream.Write(board[i, j].HasNumber ? board[i, j].Number.ToString() : spaces);
-                            if (j != board.M - 1)
-                            {
-                                saveStream.Write("|");
-                            }
-                        }
-                        saveStream.Write("\n");
-                    }
-                }
             }
         }
 
@@ -267,19 +222,5 @@ namespace HW7_Sudoku
         {
             Close();
         }
-
-        private void LoadButton_Click(object sender, EventArgs e)
-        {
-
-        }
     }
-
-
-
-
-
-
-
-
-} //end of class 
-
+}
