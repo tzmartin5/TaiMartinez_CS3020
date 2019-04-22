@@ -28,15 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.splitter1 = new System.Windows.Forms.Splitter();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
@@ -115,56 +110,34 @@
             this.textBox79 = new System.Windows.Forms.TextBox();
             this.textBox80 = new System.Windows.Forms.TextBox();
             this.textBox81 = new System.Windows.Forms.TextBox();
-            this.textBox82 = new System.Windows.Forms.TextBox();
+            this.OutputBox = new System.Windows.Forms.TextBox();
             this.CheckButton = new System.Windows.Forms.Button();
             this.SolveButton = new System.Windows.Forms.Button();
             this.LoadButton = new System.Windows.Forms.Button();
             this.NewGameButton = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.mnuInput = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuInput.SuspendLayout();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitter1
             // 
             this.splitter1.Location = new System.Drawing.Point(0, 0);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(853, 796);
+            this.splitter1.Size = new System.Drawing.Size(853, 882);
             this.splitter1.TabIndex = 0;
             this.splitter1.TabStop = false;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(12, 12);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(84, 78);
-            this.textBox1.TabIndex = 1;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(102, 12);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(84, 78);
-            this.textBox2.TabIndex = 2;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(192, 12);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(84, 78);
-            this.textBox3.TabIndex = 3;
             // 
             // label1
             // 
             this.label1.BackColor = System.Drawing.Color.Gray;
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label1.Location = new System.Drawing.Point(282, 9);
+            this.label1.Location = new System.Drawing.Point(288, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(10, 781);
             this.label1.TabIndex = 4;
@@ -172,7 +145,7 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(192, 96);
+            this.textBox4.Location = new System.Drawing.Point(394, 703);
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(84, 78);
@@ -180,23 +153,15 @@
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(102, 96);
+            this.textBox5.Location = new System.Drawing.Point(394, 619);
             this.textBox5.Multiline = true;
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(84, 78);
             this.textBox5.TabIndex = 6;
             // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(12, 96);
-            this.textBox6.Multiline = true;
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(84, 78);
-            this.textBox6.TabIndex = 7;
-            // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(192, 180);
+            this.textBox7.Location = new System.Drawing.Point(304, 703);
             this.textBox7.Multiline = true;
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(84, 78);
@@ -204,7 +169,7 @@
             // 
             // textBox8
             // 
-            this.textBox8.Location = new System.Drawing.Point(102, 180);
+            this.textBox8.Location = new System.Drawing.Point(304, 619);
             this.textBox8.Multiline = true;
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(84, 78);
@@ -212,7 +177,7 @@
             // 
             // textBox9
             // 
-            this.textBox9.Location = new System.Drawing.Point(12, 180);
+            this.textBox9.Location = new System.Drawing.Point(394, 535);
             this.textBox9.Multiline = true;
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(84, 78);
@@ -222,7 +187,7 @@
             // 
             this.label2.BackColor = System.Drawing.Color.Gray;
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label2.Location = new System.Drawing.Point(568, 8);
+            this.label2.Location = new System.Drawing.Point(574, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(10, 795);
             this.label2.TabIndex = 11;
@@ -232,7 +197,7 @@
             // 
             this.label3.BackColor = System.Drawing.Color.Gray;
             this.label3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label3.Location = new System.Drawing.Point(0, 261);
+            this.label3.Location = new System.Drawing.Point(0, 260);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(854, 10);
             this.label3.TabIndex = 12;
@@ -242,7 +207,7 @@
             // 
             this.label4.BackColor = System.Drawing.Color.Gray;
             this.label4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label4.Location = new System.Drawing.Point(-1, 526);
+            this.label4.Location = new System.Drawing.Point(3, 522);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(854, 10);
             this.label4.TabIndex = 13;
@@ -250,7 +215,7 @@
             // 
             // textBox10
             // 
-            this.textBox10.Location = new System.Drawing.Point(298, 12);
+            this.textBox10.Location = new System.Drawing.Point(198, 441);
             this.textBox10.Multiline = true;
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(84, 78);
@@ -258,7 +223,7 @@
             // 
             // textBox11
             // 
-            this.textBox11.Location = new System.Drawing.Point(388, 12);
+            this.textBox11.Location = new System.Drawing.Point(108, 441);
             this.textBox11.Multiline = true;
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(84, 78);
@@ -266,7 +231,7 @@
             // 
             // textBox12
             // 
-            this.textBox12.Location = new System.Drawing.Point(478, 12);
+            this.textBox12.Location = new System.Drawing.Point(18, 441);
             this.textBox12.Multiline = true;
             this.textBox12.Name = "textBox12";
             this.textBox12.Size = new System.Drawing.Size(84, 78);
@@ -274,7 +239,7 @@
             // 
             // textBox13
             // 
-            this.textBox13.Location = new System.Drawing.Point(298, 96);
+            this.textBox13.Location = new System.Drawing.Point(484, 11);
             this.textBox13.Multiline = true;
             this.textBox13.Name = "textBox13";
             this.textBox13.Size = new System.Drawing.Size(84, 78);
@@ -282,7 +247,7 @@
             // 
             // textBox14
             // 
-            this.textBox14.Location = new System.Drawing.Point(388, 96);
+            this.textBox14.Location = new System.Drawing.Point(593, 11);
             this.textBox14.Multiline = true;
             this.textBox14.Name = "textBox14";
             this.textBox14.Size = new System.Drawing.Size(84, 78);
@@ -290,7 +255,7 @@
             // 
             // textBox15
             // 
-            this.textBox15.Location = new System.Drawing.Point(478, 96);
+            this.textBox15.Location = new System.Drawing.Point(593, 95);
             this.textBox15.Multiline = true;
             this.textBox15.Name = "textBox15";
             this.textBox15.Size = new System.Drawing.Size(84, 78);
@@ -298,7 +263,7 @@
             // 
             // textBox16
             // 
-            this.textBox16.Location = new System.Drawing.Point(298, 180);
+            this.textBox16.Location = new System.Drawing.Point(484, 95);
             this.textBox16.Multiline = true;
             this.textBox16.Name = "textBox16";
             this.textBox16.Size = new System.Drawing.Size(84, 78);
@@ -306,7 +271,7 @@
             // 
             // textBox17
             // 
-            this.textBox17.Location = new System.Drawing.Point(388, 180);
+            this.textBox17.Location = new System.Drawing.Point(484, 179);
             this.textBox17.Multiline = true;
             this.textBox17.Name = "textBox17";
             this.textBox17.Size = new System.Drawing.Size(84, 78);
@@ -314,7 +279,7 @@
             // 
             // textBox18
             // 
-            this.textBox18.Location = new System.Drawing.Point(478, 180);
+            this.textBox18.Location = new System.Drawing.Point(590, 179);
             this.textBox18.Multiline = true;
             this.textBox18.Name = "textBox18";
             this.textBox18.Size = new System.Drawing.Size(84, 78);
@@ -322,7 +287,7 @@
             // 
             // textBox19
             // 
-            this.textBox19.Location = new System.Drawing.Point(584, 12);
+            this.textBox19.Location = new System.Drawing.Point(198, 357);
             this.textBox19.Multiline = true;
             this.textBox19.Name = "textBox19";
             this.textBox19.Size = new System.Drawing.Size(84, 78);
@@ -330,7 +295,7 @@
             // 
             // textBox20
             // 
-            this.textBox20.Location = new System.Drawing.Point(674, 12);
+            this.textBox20.Location = new System.Drawing.Point(108, 357);
             this.textBox20.Multiline = true;
             this.textBox20.Name = "textBox20";
             this.textBox20.Size = new System.Drawing.Size(84, 78);
@@ -338,7 +303,7 @@
             // 
             // textBox21
             // 
-            this.textBox21.Location = new System.Drawing.Point(764, 12);
+            this.textBox21.Location = new System.Drawing.Point(18, 357);
             this.textBox21.Multiline = true;
             this.textBox21.Name = "textBox21";
             this.textBox21.Size = new System.Drawing.Size(84, 78);
@@ -346,7 +311,7 @@
             // 
             // textBox22
             // 
-            this.textBox22.Location = new System.Drawing.Point(388, 358);
+            this.textBox22.Location = new System.Drawing.Point(304, 179);
             this.textBox22.Multiline = true;
             this.textBox22.Name = "textBox22";
             this.textBox22.Size = new System.Drawing.Size(84, 78);
@@ -354,7 +319,7 @@
             // 
             // textBox23
             // 
-            this.textBox23.Location = new System.Drawing.Point(298, 358);
+            this.textBox23.Location = new System.Drawing.Point(394, 11);
             this.textBox23.Multiline = true;
             this.textBox23.Name = "textBox23";
             this.textBox23.Size = new System.Drawing.Size(84, 78);
@@ -362,7 +327,7 @@
             // 
             // textBox24
             // 
-            this.textBox24.Location = new System.Drawing.Point(478, 274);
+            this.textBox24.Location = new System.Drawing.Point(590, 273);
             this.textBox24.Multiline = true;
             this.textBox24.Name = "textBox24";
             this.textBox24.Size = new System.Drawing.Size(84, 78);
@@ -370,7 +335,7 @@
             // 
             // textBox25
             // 
-            this.textBox25.Location = new System.Drawing.Point(388, 274);
+            this.textBox25.Location = new System.Drawing.Point(394, 95);
             this.textBox25.Multiline = true;
             this.textBox25.Name = "textBox25";
             this.textBox25.Size = new System.Drawing.Size(84, 78);
@@ -378,7 +343,7 @@
             // 
             // textBox26
             // 
-            this.textBox26.Location = new System.Drawing.Point(298, 274);
+            this.textBox26.Location = new System.Drawing.Point(394, 179);
             this.textBox26.Multiline = true;
             this.textBox26.Name = "textBox26";
             this.textBox26.Size = new System.Drawing.Size(84, 78);
@@ -386,7 +351,7 @@
             // 
             // textBox30
             // 
-            this.textBox30.Location = new System.Drawing.Point(192, 707);
+            this.textBox30.Location = new System.Drawing.Point(484, 703);
             this.textBox30.Multiline = true;
             this.textBox30.Name = "textBox30";
             this.textBox30.Size = new System.Drawing.Size(84, 78);
@@ -394,7 +359,7 @@
             // 
             // textBox31
             // 
-            this.textBox31.Location = new System.Drawing.Point(102, 707);
+            this.textBox31.Location = new System.Drawing.Point(198, 703);
             this.textBox31.Multiline = true;
             this.textBox31.Name = "textBox31";
             this.textBox31.Size = new System.Drawing.Size(84, 78);
@@ -402,7 +367,7 @@
             // 
             // textBox32
             // 
-            this.textBox32.Location = new System.Drawing.Point(12, 707);
+            this.textBox32.Location = new System.Drawing.Point(18, 703);
             this.textBox32.Multiline = true;
             this.textBox32.Name = "textBox32";
             this.textBox32.Size = new System.Drawing.Size(84, 78);
@@ -410,7 +375,7 @@
             // 
             // textBox33
             // 
-            this.textBox33.Location = new System.Drawing.Point(192, 623);
+            this.textBox33.Location = new System.Drawing.Point(484, 619);
             this.textBox33.Multiline = true;
             this.textBox33.Name = "textBox33";
             this.textBox33.Size = new System.Drawing.Size(84, 78);
@@ -418,7 +383,7 @@
             // 
             // textBox34
             // 
-            this.textBox34.Location = new System.Drawing.Point(102, 623);
+            this.textBox34.Location = new System.Drawing.Point(198, 619);
             this.textBox34.Multiline = true;
             this.textBox34.Name = "textBox34";
             this.textBox34.Size = new System.Drawing.Size(84, 78);
@@ -426,7 +391,7 @@
             // 
             // textBox35
             // 
-            this.textBox35.Location = new System.Drawing.Point(12, 623);
+            this.textBox35.Location = new System.Drawing.Point(18, 619);
             this.textBox35.Multiline = true;
             this.textBox35.Name = "textBox35";
             this.textBox35.Size = new System.Drawing.Size(84, 78);
@@ -434,7 +399,7 @@
             // 
             // textBox36
             // 
-            this.textBox36.Location = new System.Drawing.Point(192, 539);
+            this.textBox36.Location = new System.Drawing.Point(484, 535);
             this.textBox36.Multiline = true;
             this.textBox36.Name = "textBox36";
             this.textBox36.Size = new System.Drawing.Size(84, 78);
@@ -442,7 +407,7 @@
             // 
             // textBox37
             // 
-            this.textBox37.Location = new System.Drawing.Point(102, 539);
+            this.textBox37.Location = new System.Drawing.Point(198, 535);
             this.textBox37.Multiline = true;
             this.textBox37.Name = "textBox37";
             this.textBox37.Size = new System.Drawing.Size(84, 78);
@@ -450,7 +415,7 @@
             // 
             // textBox38
             // 
-            this.textBox38.Location = new System.Drawing.Point(12, 539);
+            this.textBox38.Location = new System.Drawing.Point(18, 535);
             this.textBox38.Multiline = true;
             this.textBox38.Name = "textBox38";
             this.textBox38.Size = new System.Drawing.Size(84, 78);
@@ -458,7 +423,7 @@
             // 
             // textBox39
             // 
-            this.textBox39.Location = new System.Drawing.Point(192, 358);
+            this.textBox39.Location = new System.Drawing.Point(304, 357);
             this.textBox39.Multiline = true;
             this.textBox39.Name = "textBox39";
             this.textBox39.Size = new System.Drawing.Size(84, 78);
@@ -466,7 +431,7 @@
             // 
             // textBox40
             // 
-            this.textBox40.Location = new System.Drawing.Point(102, 358);
+            this.textBox40.Location = new System.Drawing.Point(484, 441);
             this.textBox40.Multiline = true;
             this.textBox40.Name = "textBox40";
             this.textBox40.Size = new System.Drawing.Size(84, 78);
@@ -474,7 +439,7 @@
             // 
             // textBox41
             // 
-            this.textBox41.Location = new System.Drawing.Point(192, 445);
+            this.textBox41.Location = new System.Drawing.Point(394, 357);
             this.textBox41.Multiline = true;
             this.textBox41.Name = "textBox41";
             this.textBox41.Size = new System.Drawing.Size(84, 78);
@@ -482,7 +447,7 @@
             // 
             // textBox42
             // 
-            this.textBox42.Location = new System.Drawing.Point(102, 445);
+            this.textBox42.Location = new System.Drawing.Point(304, 441);
             this.textBox42.Multiline = true;
             this.textBox42.Name = "textBox42";
             this.textBox42.Size = new System.Drawing.Size(84, 78);
@@ -490,7 +455,7 @@
             // 
             // textBox43
             // 
-            this.textBox43.Location = new System.Drawing.Point(12, 442);
+            this.textBox43.Location = new System.Drawing.Point(108, 703);
             this.textBox43.Multiline = true;
             this.textBox43.Name = "textBox43";
             this.textBox43.Size = new System.Drawing.Size(84, 78);
@@ -498,7 +463,7 @@
             // 
             // textBox44
             // 
-            this.textBox44.Location = new System.Drawing.Point(12, 358);
+            this.textBox44.Location = new System.Drawing.Point(108, 619);
             this.textBox44.Multiline = true;
             this.textBox44.Name = "textBox44";
             this.textBox44.Size = new System.Drawing.Size(84, 78);
@@ -506,7 +471,7 @@
             // 
             // textBox45
             // 
-            this.textBox45.Location = new System.Drawing.Point(192, 274);
+            this.textBox45.Location = new System.Drawing.Point(108, 535);
             this.textBox45.Multiline = true;
             this.textBox45.Name = "textBox45";
             this.textBox45.Size = new System.Drawing.Size(84, 78);
@@ -514,7 +479,7 @@
             // 
             // textBox46
             // 
-            this.textBox46.Location = new System.Drawing.Point(102, 274);
+            this.textBox46.Location = new System.Drawing.Point(394, 441);
             this.textBox46.Multiline = true;
             this.textBox46.Name = "textBox46";
             this.textBox46.Size = new System.Drawing.Size(84, 78);
@@ -522,7 +487,7 @@
             // 
             // textBox47
             // 
-            this.textBox47.Location = new System.Drawing.Point(12, 274);
+            this.textBox47.Location = new System.Drawing.Point(304, 535);
             this.textBox47.Multiline = true;
             this.textBox47.Name = "textBox47";
             this.textBox47.Size = new System.Drawing.Size(84, 78);
@@ -530,7 +495,7 @@
             // 
             // textBox48
             // 
-            this.textBox48.Location = new System.Drawing.Point(764, 180);
+            this.textBox48.Location = new System.Drawing.Point(108, 273);
             this.textBox48.Multiline = true;
             this.textBox48.Name = "textBox48";
             this.textBox48.Size = new System.Drawing.Size(84, 78);
@@ -538,7 +503,7 @@
             // 
             // textBox49
             // 
-            this.textBox49.Location = new System.Drawing.Point(674, 180);
+            this.textBox49.Location = new System.Drawing.Point(770, 179);
             this.textBox49.Multiline = true;
             this.textBox49.Name = "textBox49";
             this.textBox49.Size = new System.Drawing.Size(84, 78);
@@ -546,7 +511,7 @@
             // 
             // textBox50
             // 
-            this.textBox50.Location = new System.Drawing.Point(584, 180);
+            this.textBox50.Location = new System.Drawing.Point(680, 179);
             this.textBox50.Multiline = true;
             this.textBox50.Name = "textBox50";
             this.textBox50.Size = new System.Drawing.Size(84, 78);
@@ -554,7 +519,7 @@
             // 
             // textBox51
             // 
-            this.textBox51.Location = new System.Drawing.Point(764, 96);
+            this.textBox51.Location = new System.Drawing.Point(198, 273);
             this.textBox51.Multiline = true;
             this.textBox51.Name = "textBox51";
             this.textBox51.Size = new System.Drawing.Size(84, 78);
@@ -562,7 +527,7 @@
             // 
             // textBox52
             // 
-            this.textBox52.Location = new System.Drawing.Point(674, 96);
+            this.textBox52.Location = new System.Drawing.Point(773, 95);
             this.textBox52.Multiline = true;
             this.textBox52.Name = "textBox52";
             this.textBox52.Size = new System.Drawing.Size(84, 78);
@@ -570,7 +535,7 @@
             // 
             // textBox53
             // 
-            this.textBox53.Location = new System.Drawing.Point(584, 96);
+            this.textBox53.Location = new System.Drawing.Point(683, 95);
             this.textBox53.Multiline = true;
             this.textBox53.Name = "textBox53";
             this.textBox53.Size = new System.Drawing.Size(84, 78);
@@ -578,7 +543,7 @@
             // 
             // textBox54
             // 
-            this.textBox54.Location = new System.Drawing.Point(764, 706);
+            this.textBox54.Location = new System.Drawing.Point(108, 95);
             this.textBox54.Multiline = true;
             this.textBox54.Name = "textBox54";
             this.textBox54.Size = new System.Drawing.Size(84, 78);
@@ -586,7 +551,7 @@
             // 
             // textBox55
             // 
-            this.textBox55.Location = new System.Drawing.Point(674, 707);
+            this.textBox55.Location = new System.Drawing.Point(773, 703);
             this.textBox55.Multiline = true;
             this.textBox55.Name = "textBox55";
             this.textBox55.Size = new System.Drawing.Size(84, 78);
@@ -594,7 +559,7 @@
             // 
             // textBox56
             // 
-            this.textBox56.Location = new System.Drawing.Point(584, 707);
+            this.textBox56.Location = new System.Drawing.Point(683, 703);
             this.textBox56.Multiline = true;
             this.textBox56.Name = "textBox56";
             this.textBox56.Size = new System.Drawing.Size(84, 78);
@@ -602,7 +567,7 @@
             // 
             // textBox57
             // 
-            this.textBox57.Location = new System.Drawing.Point(764, 623);
+            this.textBox57.Location = new System.Drawing.Point(198, 95);
             this.textBox57.Multiline = true;
             this.textBox57.Name = "textBox57";
             this.textBox57.Size = new System.Drawing.Size(84, 78);
@@ -610,7 +575,7 @@
             // 
             // textBox58
             // 
-            this.textBox58.Location = new System.Drawing.Point(674, 623);
+            this.textBox58.Location = new System.Drawing.Point(773, 619);
             this.textBox58.Multiline = true;
             this.textBox58.Name = "textBox58";
             this.textBox58.Size = new System.Drawing.Size(84, 78);
@@ -618,7 +583,7 @@
             // 
             // textBox59
             // 
-            this.textBox59.Location = new System.Drawing.Point(584, 623);
+            this.textBox59.Location = new System.Drawing.Point(683, 619);
             this.textBox59.Multiline = true;
             this.textBox59.Name = "textBox59";
             this.textBox59.Size = new System.Drawing.Size(84, 78);
@@ -626,7 +591,7 @@
             // 
             // textBox60
             // 
-            this.textBox60.Location = new System.Drawing.Point(764, 539);
+            this.textBox60.Location = new System.Drawing.Point(18, 179);
             this.textBox60.Multiline = true;
             this.textBox60.Name = "textBox60";
             this.textBox60.Size = new System.Drawing.Size(84, 78);
@@ -634,7 +599,7 @@
             // 
             // textBox61
             // 
-            this.textBox61.Location = new System.Drawing.Point(674, 539);
+            this.textBox61.Location = new System.Drawing.Point(770, 535);
             this.textBox61.Multiline = true;
             this.textBox61.Name = "textBox61";
             this.textBox61.Size = new System.Drawing.Size(84, 78);
@@ -642,7 +607,7 @@
             // 
             // textBox62
             // 
-            this.textBox62.Location = new System.Drawing.Point(584, 539);
+            this.textBox62.Location = new System.Drawing.Point(680, 535);
             this.textBox62.Multiline = true;
             this.textBox62.Name = "textBox62";
             this.textBox62.Size = new System.Drawing.Size(84, 78);
@@ -650,7 +615,7 @@
             // 
             // textBox63
             // 
-            this.textBox63.Location = new System.Drawing.Point(478, 706);
+            this.textBox63.Location = new System.Drawing.Point(593, 703);
             this.textBox63.Multiline = true;
             this.textBox63.Name = "textBox63";
             this.textBox63.Size = new System.Drawing.Size(84, 78);
@@ -658,7 +623,7 @@
             // 
             // textBox64
             // 
-            this.textBox64.Location = new System.Drawing.Point(388, 707);
+            this.textBox64.Location = new System.Drawing.Point(394, 273);
             this.textBox64.Multiline = true;
             this.textBox64.Name = "textBox64";
             this.textBox64.Size = new System.Drawing.Size(84, 78);
@@ -666,7 +631,7 @@
             // 
             // textBox65
             // 
-            this.textBox65.Location = new System.Drawing.Point(298, 707);
+            this.textBox65.Location = new System.Drawing.Point(484, 357);
             this.textBox65.Multiline = true;
             this.textBox65.Name = "textBox65";
             this.textBox65.Size = new System.Drawing.Size(84, 78);
@@ -674,7 +639,7 @@
             // 
             // textBox66
             // 
-            this.textBox66.Location = new System.Drawing.Point(478, 623);
+            this.textBox66.Location = new System.Drawing.Point(593, 619);
             this.textBox66.Multiline = true;
             this.textBox66.Name = "textBox66";
             this.textBox66.Size = new System.Drawing.Size(84, 78);
@@ -682,7 +647,7 @@
             // 
             // textBox67
             // 
-            this.textBox67.Location = new System.Drawing.Point(388, 623);
+            this.textBox67.Location = new System.Drawing.Point(484, 273);
             this.textBox67.Multiline = true;
             this.textBox67.Name = "textBox67";
             this.textBox67.Size = new System.Drawing.Size(84, 78);
@@ -690,7 +655,7 @@
             // 
             // textBox68
             // 
-            this.textBox68.Location = new System.Drawing.Point(298, 623);
+            this.textBox68.Location = new System.Drawing.Point(304, 273);
             this.textBox68.Multiline = true;
             this.textBox68.Name = "textBox68";
             this.textBox68.Size = new System.Drawing.Size(84, 78);
@@ -698,7 +663,7 @@
             // 
             // textBox69
             // 
-            this.textBox69.Location = new System.Drawing.Point(478, 539);
+            this.textBox69.Location = new System.Drawing.Point(773, 11);
             this.textBox69.Multiline = true;
             this.textBox69.Name = "textBox69";
             this.textBox69.Size = new System.Drawing.Size(84, 78);
@@ -706,7 +671,7 @@
             // 
             // textBox70
             // 
-            this.textBox70.Location = new System.Drawing.Point(388, 539);
+            this.textBox70.Location = new System.Drawing.Point(590, 535);
             this.textBox70.Multiline = true;
             this.textBox70.Name = "textBox70";
             this.textBox70.Size = new System.Drawing.Size(84, 78);
@@ -714,7 +679,7 @@
             // 
             // textBox71
             // 
-            this.textBox71.Location = new System.Drawing.Point(298, 539);
+            this.textBox71.Location = new System.Drawing.Point(683, 11);
             this.textBox71.Multiline = true;
             this.textBox71.Name = "textBox71";
             this.textBox71.Size = new System.Drawing.Size(84, 78);
@@ -722,7 +687,7 @@
             // 
             // textBox72
             // 
-            this.textBox72.Location = new System.Drawing.Point(478, 442);
+            this.textBox72.Location = new System.Drawing.Point(590, 441);
             this.textBox72.Multiline = true;
             this.textBox72.Name = "textBox72";
             this.textBox72.Size = new System.Drawing.Size(84, 78);
@@ -730,7 +695,7 @@
             // 
             // textBox73
             // 
-            this.textBox73.Location = new System.Drawing.Point(388, 442);
+            this.textBox73.Location = new System.Drawing.Point(304, 95);
             this.textBox73.Multiline = true;
             this.textBox73.Name = "textBox73";
             this.textBox73.Size = new System.Drawing.Size(84, 78);
@@ -738,7 +703,7 @@
             // 
             // textBox74
             // 
-            this.textBox74.Location = new System.Drawing.Point(298, 442);
+            this.textBox74.Location = new System.Drawing.Point(304, 11);
             this.textBox74.Multiline = true;
             this.textBox74.Name = "textBox74";
             this.textBox74.Size = new System.Drawing.Size(84, 78);
@@ -746,7 +711,7 @@
             // 
             // textBox75
             // 
-            this.textBox75.Location = new System.Drawing.Point(478, 358);
+            this.textBox75.Location = new System.Drawing.Point(590, 357);
             this.textBox75.Multiline = true;
             this.textBox75.Name = "textBox75";
             this.textBox75.Size = new System.Drawing.Size(84, 78);
@@ -754,7 +719,7 @@
             // 
             // textBox27
             // 
-            this.textBox27.Location = new System.Drawing.Point(584, 442);
+            this.textBox27.Location = new System.Drawing.Point(683, 441);
             this.textBox27.Multiline = true;
             this.textBox27.Name = "textBox27";
             this.textBox27.Size = new System.Drawing.Size(84, 78);
@@ -762,7 +727,7 @@
             // 
             // textBox28
             // 
-            this.textBox28.Location = new System.Drawing.Point(584, 358);
+            this.textBox28.Location = new System.Drawing.Point(680, 357);
             this.textBox28.Multiline = true;
             this.textBox28.Name = "textBox28";
             this.textBox28.Size = new System.Drawing.Size(84, 78);
@@ -770,7 +735,7 @@
             // 
             // textBox29
             // 
-            this.textBox29.Location = new System.Drawing.Point(584, 274);
+            this.textBox29.Location = new System.Drawing.Point(680, 273);
             this.textBox29.Multiline = true;
             this.textBox29.Name = "textBox29";
             this.textBox29.Size = new System.Drawing.Size(84, 78);
@@ -778,7 +743,7 @@
             // 
             // textBox76
             // 
-            this.textBox76.Location = new System.Drawing.Point(674, 274);
+            this.textBox76.Location = new System.Drawing.Point(773, 273);
             this.textBox76.Multiline = true;
             this.textBox76.Name = "textBox76";
             this.textBox76.Size = new System.Drawing.Size(84, 78);
@@ -786,7 +751,7 @@
             // 
             // textBox77
             // 
-            this.textBox77.Location = new System.Drawing.Point(674, 358);
+            this.textBox77.Location = new System.Drawing.Point(770, 357);
             this.textBox77.Multiline = true;
             this.textBox77.Name = "textBox77";
             this.textBox77.Size = new System.Drawing.Size(84, 78);
@@ -794,7 +759,7 @@
             // 
             // textBox78
             // 
-            this.textBox78.Location = new System.Drawing.Point(674, 442);
+            this.textBox78.Location = new System.Drawing.Point(773, 441);
             this.textBox78.Multiline = true;
             this.textBox78.Name = "textBox78";
             this.textBox78.Size = new System.Drawing.Size(84, 78);
@@ -802,7 +767,7 @@
             // 
             // textBox79
             // 
-            this.textBox79.Location = new System.Drawing.Point(764, 274);
+            this.textBox79.Location = new System.Drawing.Point(18, 273);
             this.textBox79.Multiline = true;
             this.textBox79.Name = "textBox79";
             this.textBox79.Size = new System.Drawing.Size(84, 78);
@@ -810,7 +775,7 @@
             // 
             // textBox80
             // 
-            this.textBox80.Location = new System.Drawing.Point(764, 358);
+            this.textBox80.Location = new System.Drawing.Point(198, 179);
             this.textBox80.Multiline = true;
             this.textBox80.Name = "textBox80";
             this.textBox80.Size = new System.Drawing.Size(84, 78);
@@ -818,24 +783,24 @@
             // 
             // textBox81
             // 
-            this.textBox81.Location = new System.Drawing.Point(764, 442);
+            this.textBox81.Location = new System.Drawing.Point(108, 179);
             this.textBox81.Multiline = true;
             this.textBox81.Name = "textBox81";
             this.textBox81.Size = new System.Drawing.Size(84, 78);
             this.textBox81.TabIndex = 88;
             // 
-            // textBox82
+            // OutputBox
             // 
-            this.textBox82.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox82.Location = new System.Drawing.Point(885, 526);
-            this.textBox82.Multiline = true;
-            this.textBox82.Name = "textBox82";
-            this.textBox82.Size = new System.Drawing.Size(632, 258);
-            this.textBox82.TabIndex = 89;
+            this.OutputBox.BackColor = System.Drawing.SystemColors.Control;
+            this.OutputBox.Location = new System.Drawing.Point(885, 526);
+            this.OutputBox.Multiline = true;
+            this.OutputBox.Name = "OutputBox";
+            this.OutputBox.Size = new System.Drawing.Size(632, 258);
+            this.OutputBox.TabIndex = 89;
             // 
             // CheckButton
             // 
-            this.CheckButton.Location = new System.Drawing.Point(885, 30);
+            this.CheckButton.Location = new System.Drawing.Point(885, 31);
             this.CheckButton.Name = "CheckButton";
             this.CheckButton.Size = new System.Drawing.Size(270, 92);
             this.CheckButton.TabIndex = 90;
@@ -859,6 +824,7 @@
             this.LoadButton.TabIndex = 92;
             this.LoadButton.Text = "Load Preloaded";
             this.LoadButton.UseVisualStyleBackColor = true;
+            this.LoadButton.Click += new System.EventHandler(this.LoadButton_Click);
             // 
             // NewGameButton
             // 
@@ -896,129 +862,148 @@
             this.label5.Text = "Choose Difficulty";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // mnuInput
+            // panel1
             // 
-            this.mnuInput.ImageScalingSize = new System.Drawing.Size(40, 40);
-            this.mnuInput.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.openToolStripMenuItem});
-            this.mnuInput.Name = "mnuInput";
-            this.mnuInput.Size = new System.Drawing.Size(361, 151);
+            this.panel1.Controls.Add(this.textBox6);
+            this.panel1.Controls.Add(this.textBox3);
+            this.panel1.Controls.Add(this.textBox2);
+            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.textBox78);
+            this.panel1.Controls.Add(this.textBox77);
+            this.panel1.Controls.Add(this.textBox76);
+            this.panel1.Controls.Add(this.textBox29);
+            this.panel1.Controls.Add(this.textBox28);
+            this.panel1.Controls.Add(this.textBox27);
+            this.panel1.Controls.Add(this.textBox75);
+            this.panel1.Controls.Add(this.textBox74);
+            this.panel1.Controls.Add(this.textBox73);
+            this.panel1.Controls.Add(this.textBox54);
+            this.panel1.Controls.Add(this.textBox57);
+            this.panel1.Controls.Add(this.textBox60);
+            this.panel1.Controls.Add(this.textBox81);
+            this.panel1.Controls.Add(this.textBox72);
+            this.panel1.Controls.Add(this.textBox80);
+            this.panel1.Controls.Add(this.textBox71);
+            this.panel1.Controls.Add(this.textBox79);
+            this.panel1.Controls.Add(this.textBox70);
+            this.panel1.Controls.Add(this.textBox69);
+            this.panel1.Controls.Add(this.textBox68);
+            this.panel1.Controls.Add(this.textBox67);
+            this.panel1.Controls.Add(this.textBox48);
+            this.panel1.Controls.Add(this.textBox51);
+            this.panel1.Controls.Add(this.textBox66);
+            this.panel1.Controls.Add(this.textBox65);
+            this.panel1.Controls.Add(this.textBox21);
+            this.panel1.Controls.Add(this.textBox32);
+            this.panel1.Controls.Add(this.textBox20);
+            this.panel1.Controls.Add(this.textBox35);
+            this.panel1.Controls.Add(this.textBox19);
+            this.panel1.Controls.Add(this.textBox38);
+            this.panel1.Controls.Add(this.textBox12);
+            this.panel1.Controls.Add(this.textBox43);
+            this.panel1.Controls.Add(this.textBox11);
+            this.panel1.Controls.Add(this.textBox44);
+            this.panel1.Controls.Add(this.textBox10);
+            this.panel1.Controls.Add(this.textBox47);
+            this.panel1.Controls.Add(this.textBox64);
+            this.panel1.Controls.Add(this.textBox63);
+            this.panel1.Controls.Add(this.textBox62);
+            this.panel1.Controls.Add(this.textBox61);
+            this.panel1.Controls.Add(this.textBox59);
+            this.panel1.Controls.Add(this.textBox58);
+            this.panel1.Controls.Add(this.textBox56);
+            this.panel1.Controls.Add(this.textBox55);
+            this.panel1.Controls.Add(this.textBox53);
+            this.panel1.Controls.Add(this.textBox52);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.textBox50);
+            this.panel1.Controls.Add(this.textBox49);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.textBox46);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.textBox45);
+            this.panel1.Controls.Add(this.textBox42);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.textBox9);
+            this.panel1.Controls.Add(this.textBox41);
+            this.panel1.Controls.Add(this.textBox40);
+            this.panel1.Controls.Add(this.textBox39);
+            this.panel1.Controls.Add(this.textBox37);
+            this.panel1.Controls.Add(this.textBox36);
+            this.panel1.Controls.Add(this.textBox34);
+            this.panel1.Controls.Add(this.textBox33);
+            this.panel1.Controls.Add(this.textBox31);
+            this.panel1.Controls.Add(this.textBox30);
+            this.panel1.Controls.Add(this.textBox26);
+            this.panel1.Controls.Add(this.textBox25);
+            this.panel1.Controls.Add(this.textBox24);
+            this.panel1.Controls.Add(this.textBox23);
+            this.panel1.Controls.Add(this.textBox22);
+            this.panel1.Controls.Add(this.textBox18);
+            this.panel1.Controls.Add(this.textBox17);
+            this.panel1.Controls.Add(this.textBox16);
+            this.panel1.Controls.Add(this.textBox15);
+            this.panel1.Controls.Add(this.textBox14);
+            this.panel1.Controls.Add(this.textBox13);
+            this.panel1.Controls.Add(this.textBox8);
+            this.panel1.Controls.Add(this.textBox7);
+            this.panel1.Controls.Add(this.textBox5);
+            this.panel1.Controls.Add(this.textBox4);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(861, 882);
+            this.panel1.TabIndex = 96;
             // 
-            // fileToolStripMenuItem
+            // textBox1
             // 
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(360, 46);
-            this.fileToolStripMenuItem.Text = "&File";
+            this.textBox1.Location = new System.Drawing.Point(18, 95);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(84, 78);
+            this.textBox1.TabIndex = 89;
             // 
-            // openToolStripMenuItem
+            // textBox2
             // 
-            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(360, 46);
-            this.openToolStripMenuItem.Text = "&Open";
-            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            this.textBox2.Location = new System.Drawing.Point(198, 11);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(84, 78);
+            this.textBox2.TabIndex = 90;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(108, 11);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(84, 78);
+            this.textBox3.TabIndex = 91;
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(18, 11);
+            this.textBox6.Multiline = true;
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(84, 78);
+            this.textBox6.TabIndex = 97;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1553, 796);
+            this.ClientSize = new System.Drawing.Size(1553, 882);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.NewGameButton);
             this.Controls.Add(this.LoadButton);
             this.Controls.Add(this.SolveButton);
             this.Controls.Add(this.CheckButton);
-            this.Controls.Add(this.textBox82);
-            this.Controls.Add(this.textBox81);
-            this.Controls.Add(this.textBox80);
-            this.Controls.Add(this.textBox79);
-            this.Controls.Add(this.textBox78);
-            this.Controls.Add(this.textBox77);
-            this.Controls.Add(this.textBox76);
-            this.Controls.Add(this.textBox29);
-            this.Controls.Add(this.textBox28);
-            this.Controls.Add(this.textBox27);
-            this.Controls.Add(this.textBox75);
-            this.Controls.Add(this.textBox74);
-            this.Controls.Add(this.textBox73);
-            this.Controls.Add(this.textBox72);
-            this.Controls.Add(this.textBox71);
-            this.Controls.Add(this.textBox70);
-            this.Controls.Add(this.textBox69);
-            this.Controls.Add(this.textBox68);
-            this.Controls.Add(this.textBox67);
-            this.Controls.Add(this.textBox66);
-            this.Controls.Add(this.textBox65);
-            this.Controls.Add(this.textBox64);
-            this.Controls.Add(this.textBox63);
-            this.Controls.Add(this.textBox62);
-            this.Controls.Add(this.textBox61);
-            this.Controls.Add(this.textBox60);
-            this.Controls.Add(this.textBox59);
-            this.Controls.Add(this.textBox58);
-            this.Controls.Add(this.textBox57);
-            this.Controls.Add(this.textBox56);
-            this.Controls.Add(this.textBox55);
-            this.Controls.Add(this.textBox54);
-            this.Controls.Add(this.textBox53);
-            this.Controls.Add(this.textBox52);
-            this.Controls.Add(this.textBox51);
-            this.Controls.Add(this.textBox50);
-            this.Controls.Add(this.textBox49);
-            this.Controls.Add(this.textBox48);
-            this.Controls.Add(this.textBox47);
-            this.Controls.Add(this.textBox46);
-            this.Controls.Add(this.textBox45);
-            this.Controls.Add(this.textBox44);
-            this.Controls.Add(this.textBox43);
-            this.Controls.Add(this.textBox42);
-            this.Controls.Add(this.textBox41);
-            this.Controls.Add(this.textBox40);
-            this.Controls.Add(this.textBox39);
-            this.Controls.Add(this.textBox38);
-            this.Controls.Add(this.textBox37);
-            this.Controls.Add(this.textBox36);
-            this.Controls.Add(this.textBox35);
-            this.Controls.Add(this.textBox34);
-            this.Controls.Add(this.textBox33);
-            this.Controls.Add(this.textBox32);
-            this.Controls.Add(this.textBox31);
-            this.Controls.Add(this.textBox30);
-            this.Controls.Add(this.textBox26);
-            this.Controls.Add(this.textBox25);
-            this.Controls.Add(this.textBox24);
-            this.Controls.Add(this.textBox23);
-            this.Controls.Add(this.textBox22);
-            this.Controls.Add(this.textBox21);
-            this.Controls.Add(this.textBox20);
-            this.Controls.Add(this.textBox19);
-            this.Controls.Add(this.textBox18);
-            this.Controls.Add(this.textBox17);
-            this.Controls.Add(this.textBox16);
-            this.Controls.Add(this.textBox15);
-            this.Controls.Add(this.textBox14);
-            this.Controls.Add(this.textBox13);
-            this.Controls.Add(this.textBox12);
-            this.Controls.Add(this.textBox11);
-            this.Controls.Add(this.textBox10);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox9);
-            this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.OutputBox);
             this.Controls.Add(this.splitter1);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.mnuInput.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1027,13 +1012,9 @@
         #endregion
 
         private System.Windows.Forms.Splitter splitter1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.TextBox textBox9;
@@ -1112,16 +1093,18 @@
         private System.Windows.Forms.TextBox textBox79;
         private System.Windows.Forms.TextBox textBox80;
         private System.Windows.Forms.TextBox textBox81;
-        private System.Windows.Forms.TextBox textBox82;
+        private System.Windows.Forms.TextBox OutputBox;
         private System.Windows.Forms.Button CheckButton;
         private System.Windows.Forms.Button SolveButton;
         private System.Windows.Forms.Button LoadButton;
         private System.Windows.Forms.Button NewGameButton;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ContextMenuStrip mnuInput;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

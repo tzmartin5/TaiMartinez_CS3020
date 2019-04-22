@@ -8,292 +8,270 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace HW7_Sudoku
 {
     public partial class Form1 : Form
     {
+
+        TextBox[,] boardTextBoxes;
+        Panel boardPanel;
+
         public Form1()
         {
             InitializeComponent();
         }
 
-        private TextBox[,] txtSquare = new TextBox[10, 10];
-        private SudokuGrid grid;
-        private int tempR = 0;
-        private int tempC = 0;
-
-        private void frmMain_Load(object sender, EventArgs e)
+        private void generateBoard(int n, int m)
         {
-            for (int i = 1; i <= 9; i++)
+            const int TxtBoxWidth = 25;
+            const int TxtBoxHeight = 25;
+            const int SquarePadding = 5;
+            const int StartPosX = 20;
+            const int StartPosY = 40;
+            const int PanelPadding = 8;
+            const int MaxTextLength = 2;
+
+            if (boardTextBoxes != null && boardTextBoxes.GetLength(0) == m)
             {
-                for (int j = 1; j <= 9; j++)
+                // We can just re-use the existing board after clearing the squares
+                foreach (var box in boardTextBoxes)
                 {
-                    txtSquare[i, j] = new TextBox();
-                    txtSquare[i, j].Name = i + "" + j;
-                    txtSquare[i, j].Text = "";
-                    txtSquare[i, j].Multiline = true;
-                    txtSquare[i, j].Size = new Size(50, 50);
-                    txtSquare[i, j].Location = new Point(10 + ((j - 1) * 55), 30 + ((i - 1) * 55));
-                    txtSquare[i, j].ReadOnly = true;
-                    txtSquare[i, j].TextAlign = HorizontalAlignment.Center;
-                    txtSquare[i, j].TabStop = false;
-                    txtSquare[i, j].Font = new Font(FontFamily.GenericSansSerif, 8, FontStyle.Regular);
-                    txtSquare[i, j].Cursor = Cursors.Default;
-                    txtSquare[i, j].ContextMenuStrip = mnuInput;
-                    if ((i + j) % 2 == 0)
-                    {
-                        txtSquare[i, j].BackColor = Color.LightBlue;
-                    }
-                    this.Controls.Add(txtSquare[i, j]);
-                    txtSquare[i, j].MouseDown += new MouseEventHandler(HandleInput);
-                }
-            }
-            grid = new SudokuGrid();
-            UpdateDisplay();
-        }
-
-
-        private void frmMain_Paint(object sender, PaintEventArgs e)
-        {
-            Graphics g = e.Graphics;
-            g.DrawLine(Pens.Black, 172, 30, 172, 520);
-            g.DrawLine(Pens.Black, 337, 30, 337, 520);
-            g.DrawLine(Pens.Black, 10, 192, 500, 192);
-            g.DrawLine(Pens.Black, 10, 357, 500, 357);
-        }
-
-
-        private void UpdateDisplay()
-        {
-            Font smallFont = new Font(FontFamily.GenericSansSerif, 8, FontStyle.Regular);
-            Font largeFont = new Font(FontFamily.GenericSansSerif, 20, FontStyle.Bold);
-            for (int i = 1; i <= 9; i++)
-            {
-                for (int j = 1; j <= 9; j++)
-                {
-                    if (grid[i, j].Value == 0)
-                    {
-                        txtSquare[i, j].Font = smallFont;
-                        txtSquare[i, j].Text = grid[i, j].DisplayCandidates();
-                    }
-                    else
-                    {
-                        txtSquare[i, j].Font = largeFont;
-                        txtSquare[i, j].Text = System.Convert.ToString(grid[i, j].Value);
-                    }
-                }
-            }
-        }
-
-
-        private void HandleInput(object sender, MouseEventArgs e)
-        {
-            TextBox myTemp = (TextBox)sender;
-            string name = myTemp.Name;
-            tempR = System.Convert.ToInt32(name.Substring(0, 1));
-            tempC = System.Convert.ToInt32(name.Substring(1));
-        }
-
-        private void mnuInput_Opening(object sender, CancelEventArgs e)
-        {
-            mnuInput.Items.Clear();
-            if (grid[tempR, tempC].Value == 0)
-            {
-                for (int i = 1; i <= 9; i++)
-                {
-                    if (grid[tempR, tempC][i] == 0)
-                    {
-                        mnuInput.Items.Add("Make " + i);
-                    }
+                    box.Text = "";
+                  //  styleAsDefault(box);
                 }
             }
             else
             {
-                mnuInput.Items.Add("Remove Number");
-            }
-        }
+                SuspendLayout();
 
-        private void mnuInput_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-            if (grid[tempR, tempC].Value == 0)
-            {
-                int valToEnter = System.Convert.ToInt32(e.ClickedItem.Text.Substring(5));
-                mnuInput.Close();
-                grid.EnterItem(tempR, tempC, valToEnter);
-            }
-            else
-            {
-                //to add - remove the number
-            }
-            UpdateDisplay();
-        }
-
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog od = new OpenFileDialog();
-            od.Title = "Open A Sudoku Puzzle";
-            od.Filter = "Sudoku Puzzle|*.txt";
-            if (od.ShowDialog() == DialogResult.OK)
-            {
-                grid.ReadValues(File.ReadAllText(od.FileName));
-                UpdateDisplay();
-            }
-        }
-    } //end form class 
-
-
-    class GridSquare
-    {
-        private int GridRow;
-        private int GridCol;
-        private int SquareValue = 0;
-        private int[] SquareCandidates = new int[10] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-        private int GridMiniSquare;
-        public GridSquare(int r, int c)
-        {
-            GridRow = r;
-            GridCol = c;
-            GridMiniSquare = (int)((c - 1) / 3) + (3 * (int)((r - 1) / 3));
-
-        }
-        public int MiniSquare
-        {
-            get { return GridMiniSquare; }
-
-        }
-        public int Value
-        {
-            get { return SquareValue; }
-            set { SquareValue = value; }
-        }
-        public int Row
-        {
-            get { return GridRow; }
-            set { GridRow = value; }
-        }
-        public int Col
-        {
-            get { return GridCol; }
-            set { GridCol = value; }
-        }
-        public int this[int i]
-        {
-            get { return SquareCandidates[i]; }
-            set { SquareCandidates[i] = value; }
-        }
-        public int NumCandidates()
-        {
-            int sumCands = 0;
-            for (int i = 1; i <= 9; i++)
-            {
-                sumCands += SquareCandidates[i];
-            }
-            sumCands = 9 - sumCands;
-            return sumCands;
-        }
-        public string DisplayCandidates()
-        {
-            string cands = "";
-            for (int i = 1; i <= 9; i++)
-            {
-                if (SquareCandidates[i] == 0)
+                // Dispose the existing controls
+                if (boardTextBoxes != null)
                 {
-                    cands += i + " ";
-                }
-                else
-                {
-                    cands += " ";
-                }
-            }
-            return cands;
-        }
-
-    }
-
-
-    class SudokuGrid
-    {
-        private GridSquare[,] GridCell = new GridSquare[10, 10];
-        private int[,] GridRefs = { { 1, 1 }, { 1, 4 }, { 1, 7 }, { 4, 1 }, { 4, 4 }, { 4, 7 }, { 7, 1 }, { 7, 4 }, { 7, 7 } };
-
-        public SudokuGrid()
-        {
-            for (int i = 1; i <= 9; i++)
-            {
-                for (int j = 1; j <= 9; j++)
-                {
-                    GridCell[i, j] = new GridSquare(i, j);
-                }
-            }
-        }
-        public GridSquare this[int i, int j]
-        {
-            get { return GridCell[i, j]; }
-        }
-        public void EnterItem(int row, int col, int cellvalue)
-        {
-            GridCell[row, col].Value = cellvalue;
-            //eliminate from columns and rows
-            for (int i = 1; i <= 9; i++)
-            {
-                if (i != row)
-                {
-                    GridCell[row, i][cellvalue] = 1;
-                }
-                if (i != col)
-                {
-                    GridCell[i, col][cellvalue] = 1;
-                }
-            }
-            //eliminate from minisquares
-            for (int i = GridRefs[GridCell[row, col].MiniSquare, 0]; i <= GridRefs[GridCell[row, col].MiniSquare, 0] + 2; i++)
-            {
-                for (int j = GridRefs[GridCell[row, col].MiniSquare, 1]; j <= GridRefs[GridCell[row, col].MiniSquare, 1] + 2; j++)
-                {
-                    GridCell[i, j][cellvalue] = 1;
-                }
-            }
-        }
-
-
-        public void ClearGrid()
-        {
-            for (int i = 1; i <= 9; i++)
-            {
-                for (int j = 1; j <= 9; j++)
-                {
-                    GridCell[i, j] = new GridSquare(i, j);
-                }
-            }
-        }
-
-        public void ReadValues(string ValueString)
-        {
-            //To do: Add code to check format of the string
-
-            ClearGrid();
-            int numCount = 0;
-            int newValue = 0;
-            for (int i = 1; i <= 9; i++)
-            {
-                for (int j = 1; j <= 9; j++)
-                {
-                    newValue = System.Convert.ToInt32(ValueString.Substring(numCount, 1));
-                    if (newValue != 0)
+                    foreach (var box in boardTextBoxes)
                     {
-                        EnterItem(i, j, newValue);
+                        box.Dispose();
                     }
-                    numCount++;
+                }
+                if (boardPanel != null)
+                {
+                    boardPanel.Dispose();
+                }
+
+                boardPanel = new Panel();
+                boardPanel.Location = new Point(StartPosX, StartPosY);
+                boardPanel.Size = new Size(PanelPadding * 2 + SquarePadding * (n - 1) + m * TxtBoxWidth,
+                                            PanelPadding * 2 + SquarePadding * (n - 1) + m * TxtBoxHeight);
+                boardPanel.BackColor = Color.PowderBlue;
+                Controls.Add(boardPanel);
+                boardTextBoxes = new TextBox[m, m];
+
+                for (var row = 0; row < boardTextBoxes.GetLength(0); row++)
+                {
+                    for (var col = 0; col < boardTextBoxes.GetLength(1); col++)
+                    {
+                        boardTextBoxes[row, col] = new TextBox();
+                        boardTextBoxes[row, col].Multiline = true;
+                        boardTextBoxes[row, col].Size = new Size(TxtBoxWidth, TxtBoxHeight);
+
+                        boardTextBoxes[row, col].Location = new Point(
+                                                PanelPadding + (TxtBoxWidth * col) + (SquarePadding * (col / n))
+                                                , PanelPadding + (TxtBoxHeight * row) + (SquarePadding * (row / n)));
+                        boardTextBoxes[row, col].MaxLength = MaxTextLength;
+                        boardTextBoxes[row, col].TextAlign = HorizontalAlignment.Center;
+
+                        boardPanel.Controls.Add(boardTextBoxes[row, col]);
+                    }
+                }
+                ResumeLayout();
+            }
+        }
+
+        private Board makeBoardFromText()
+        {
+            var m = boardTextBoxes.GetLength(0);
+            var newBoard = new Board(Convert.ToInt32(Math.Sqrt(m)));
+
+            for (var row = 0; row < m; row++)
+            {
+                for (var col = 0; col < m; col++)
+                {
+                    if (boardTextBoxes[row, col].Text != "")
+                        newBoard[row, col].Number = Convert.ToInt32(boardTextBoxes[row, col].Text);
+                }
+            }
+
+            return newBoard;
+        }
+
+        private void setTextFromBoard(Board board, bool isSolution = false)
+        {
+            // If we are loading a board for the first time (not just filling in the solution) draw the board
+            if (!isSolution)
+                generateBoard(board.N, board.M);
+
+            for (var row = 0; row < board.M; row++)
+            {
+                for (var col = 0; col < board.M; col++)
+                {
+                    if (isSolution && string.IsNullOrWhiteSpace(boardTextBoxes[row, col].Text))
+                    {
+                        boardTextBoxes[row, col].Text = board[row, col].ToString();
+                        styleAsSolution(boardTextBoxes[row, col]);
+                    }
+                    else if (!isSolution)
+                    {
+                        boardTextBoxes[row, col].Text = board[row, col].ToString();
+                        if (boardTextBoxes[row, col].Text != "")
+                        {
+                            styleAsGiven(boardTextBoxes[row, col]);
+                        }
+                    }
                 }
             }
         }
 
+        private void styleAsSolution(TextBox box)
+        {
+            box.ReadOnly = false;
+            box.ForeColor = Color.Blue;
+        }
 
+        private void styleAsDefault(TextBox box)
+        {
+            box.ReadOnly = false;
+            box.ForeColor = Color.Black;
+        }
 
+        private void styleAsGiven(TextBox box)
+        {
+            box.ReadOnly = true;
+            box.ForeColor = Color.Black;
+        }
 
+        private void solveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (boardTextBoxes != null)
+            {
+                var newSolve = makeBoardFromText();
+                var result = newSolve.solveBoard();
 
+                MessageBox.Show(string.Format("Is Solved: {0}\nGreatest Search Depth: {1}\nSolve Time: {2}ms", result ? "Yes" : "No", newSolve.GreatestDepth, newSolve.SolveTimeMs));
 
+                setTextFromBoard(newSolve, true);
+            }
+        }
+
+        private void checkProgressToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var board = makeBoardFromText();
+            MessageBox.Show(board.IsSolved().ToString());
+        }
+
+        private void loadTestBoardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            loadBoardFromFile(@"..\..\..\..\Saved Puzzles\HardestBoard.sudo", "HardestBoard.sudo");
+        }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var newBoardDialog = new NewBoardDialog();
+            if (newBoardDialog.ShowDialog() == DialogResult.OK)
+            {
+                var board = new Board(newBoardDialog.ChosenSize);
+                setTextFromBoard(board);
+            }
+        }
+
+        private void loadPuzzleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ofdOpenExisting.ShowDialog() == DialogResult.OK)
+            {
+                loadBoardFromFile(ofdOpenExisting.FileName, ofdOpenExisting.SafeFileName);
+            }
+        }
+
+        private void loadBoardFromFile(string fileName, string safeFileName)
+        {
+            updateTitle(safeFileName);
+
+            using (var reader = new StreamReader(fileName))
+            {
+                // Read size number - square root of number of rows and columns (3 in a 9x9)
+                var n = Convert.ToInt32(reader.ReadLine());
+                var m = n * n;
+
+                var board = new Board(n);
+
+                for (var i = 0; i < m; i++)
+                {
+                    var rowText = reader.ReadLine();
+
+                    // Skip lines that start with '#'. These are comment lines.
+                    while (rowText.Trim().StartsWith("#"))
+                    {
+                        rowText = reader.ReadLine();
+                    }
+
+                    var split = rowText.Split('|');
+
+                    for (var j = 0; j < m; j++)
+                    {
+                        try
+                        {
+                            board[i, j].Number = Convert.ToInt32(split[j].Trim());
+                        }
+                        catch (FormatException) { } // Ignore format exception for blanks
+                    }
+                }
+
+                setTextFromBoard(board);
+            }
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (boardTextBoxes == null)
+            {
+                MessageBox.Show("You can't save until you've created a puzzle to save.");
+                return;
+            }
+
+            if (sfdSave.ShowDialog() == DialogResult.OK)
+            {
+                var board = makeBoardFromText();
+                var spaces = (board.M > 9) ? "  " : " "; // To help make the columns line up propery in the text file.
+                using (var saveStream = new StreamWriter(sfdSave.FileName))
+                {
+                    // First line is the square root of the board dimension
+                    saveStream.WriteLine(board.N);
+
+                    for (var i = 0; i < board.M; i++)
+                    {
+                        for (var j = 0; j < board.M; j++)
+                        {
+                            saveStream.Write(board[i, j].HasNumber ? board[i, j].Number.ToString() : spaces);
+                            if (j != board.M - 1)
+                            {
+                                saveStream.Write("|");
+                            }
+                        }
+                        saveStream.Write("\n");
+                    }
+                }
+            }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void LoadButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 
@@ -301,4 +279,7 @@ namespace HW7_Sudoku
 
 
 
-} //end of namespace 
+
+
+} //end of class 
+
