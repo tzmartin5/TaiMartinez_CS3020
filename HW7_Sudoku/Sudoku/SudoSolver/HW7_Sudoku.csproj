@@ -51,19 +51,19 @@
   <ItemGroup>
     <Compile Include="BoardGenerator.cs" />
     <Compile Include="Combinations.cs" />
-    <Compile Include="SudoSolver.cs">
+    <Compile Include="Sudoku.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SudoSolver.Designer.cs">
-      <DependentUpon>SudoSolver.cs</DependentUpon>
+    <Compile Include="Sudoku.Designer.cs">
+      <DependentUpon>Sudoku.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Area.cs" />
     <Compile Include="Board.cs" />
     <Compile Include="Square.cs" />
-    <EmbeddedResource Include="SudoSolver.resx">
-      <DependentUpon>SudoSolver.cs</DependentUpon>
+    <EmbeddedResource Include="Sudoku.resx">
+      <DependentUpon>Sudoku.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -3,7 +3,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
-namespace SudoSolver
+namespace Sudoku
 {
     public partial class frmMain : Form
     {
@@ -37,7 +37,6 @@ namespace SudoSolver
             {
                 SuspendLayout();
 
-                // Dispose the existing controls
                 if (boardTextBoxes != null)
                 {
                     foreach (var box in boardTextBoxes)
@@ -54,7 +53,7 @@ namespace SudoSolver
                 boardPanel.Location = new Point(StartPosX, StartPosY);
                 boardPanel.Size = new Size(PanelPadding * 2 + SquarePadding * (n - 1) + m * TxtBoxWidth,
                                             PanelPadding * 2 + SquarePadding * (n - 1) + m * TxtBoxHeight);
-                boardPanel.BackColor = Color.PowderBlue;
+                boardPanel.BackColor = Color.Lavender;
                 Controls.Add(boardPanel);
                 boardTextBoxes = new TextBox[m, m];
 
@@ -126,7 +125,7 @@ namespace SudoSolver
         private void styleAsSolution(TextBox box)
         {
             box.ReadOnly = false;
-            box.ForeColor = Color.Blue;
+            box.ForeColor = Color.Red;
         }
 
         private void styleAsDefault(TextBox box)
@@ -141,47 +140,54 @@ namespace SudoSolver
             box.ForeColor = Color.Black;
         }
 
-        private void solveToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SolveButton_Click(object sender, EventArgs e)
         {
             if (boardTextBoxes != null)
             {
                 var newSolve = makeBoardFromText();
                 var result = newSolve.solveBoard();
 
-                MessageBox.Show(string.Format("Is Solved: {0}\nGreatest Search Depth: {1}\nSolve Time: {2}ms", result ? "Yes" : "No", newSolve.GreatestDepth, newSolve.SolveTimeMs));
+                MessageBox.Show(string.Format("Is Solved: {0}\nSolve Time: {1}ms", result ? "Yes" : "No", newSolve.SolveTimeMs));
 
                 setTextFromBoard(newSolve, true);
             }
         }
 
-        private void checkProgressToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CheckBtn_Click(object sender, EventArgs e)
         {
             var board = makeBoardFromText();
-            MessageBox.Show(board.IsSolved().ToString());
+            if (board.IsSolved())
+            {
+                MessageBox.Show("Correct Numbers");
+            }
+            else
+            {
+                MessageBox.Show("Incorrect Numbers");
+            }
         }
 
-        private void loadTestBoardToolStripMenuItem_Click(object sender, EventArgs e)
+        private void NewGameBtn_Click(object sender, EventArgs e)
         {
-
             int N = 9, K = 20;
             BoardGenerator sudoku = new BoardGenerator(N, K);
             sudoku.fillValues();
             sudoku.printSudoku();
 
-            loadBoardFromFile(@"..\..\..\..\Saved Puzzles\BoardGen.txt");
+            loadBoardFromFile(AppDomain.CurrentDomain.BaseDirectory + "\\" + "BoardGen.txt");
         }
 
 
-        private void loadPuzzleToolStripMenuItem_Click(object sender, EventArgs e)
+        private void LoadBtn_Click(object sender, EventArgs e)
         {
-           loadBoardFromFile(@"C:\Users\tayma\Documents\TaiMartinez_CS3020\HW7_Sudoku\Saved Puzzles\examples.txt");
+            loadBoardFromFile(AppDomain.CurrentDomain.BaseDirectory + "\\" + "examples.txt");
+
         }
+
 
         private void loadBoardFromFile(string fileName)
         {
             using (var reader = new StreamReader(fileName))
             {
-                // Read size number - square root of number of rows and columns (3 in a 9x9)
                 var n = 3;
                 var m = n*n;
 
@@ -211,11 +217,7 @@ namespace SudoSolver
             }
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
+        
         //convert from string to int
         static int IntParse(string Input)
         {
@@ -234,7 +236,6 @@ namespace SudoSolver
             return Value;
         }
 
-
-
+        
     }
 }

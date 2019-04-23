@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace SudoSolver
+namespace Sudoku
 {
     public class BoardGenerator
     {
@@ -163,7 +163,6 @@ namespace SudoSolver
         }
 
         // Remove the K no. of digits to 
-        // complete game 
         public void removeKDigits()
         {
             int count = K;
@@ -171,14 +170,12 @@ namespace SudoSolver
             {
                 int cellId = randomGenerator(N * N);
 
-                // System.out.println(cellId); 
                 // extract coordinates i  and j 
                 int i = (cellId / N);
                 int j = cellId % 9;
                 if (j != 0)
                     j = j - 1;
 
-                // System.out.println(i + " " + j);
                 if (mat[i, j] != 0)
                 {
                     count--;
@@ -187,15 +184,11 @@ namespace SudoSolver
             }
         }
 
-        // Print sudoku 
+        // write board to file 
         public void printSudoku()
         {
-
-
-
-
             using (StreamWriter file =
-            new StreamWriter(@"C:\Users\tayma\Documents\TaiMartinez_CS3020\HW7_Sudoku\Saved Puzzles\BoardGen.txt", true))
+            new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "\\" + "BoardGen.txt", true))
             {
                 for (int i = 0; i < 9; i++)
                 {
@@ -215,28 +208,6 @@ namespace SudoSolver
                 }
             }
         }
-
-
-
-        //convert from string to int
-        static int IntParse(string Input)
-        {
-            int Value = 0;
-            bool Loop = true;
-
-            Loop = int.TryParse(Input, out Value);
-
-            while (!(Loop))
-            {
-                Console.WriteLine("Invalid Input, please try again: ");
-                Input = Console.ReadLine();
-                Loop = int.TryParse(Input, out Value);
-            }
-
-            return Value;
-        }
-
-
     }
 }
 

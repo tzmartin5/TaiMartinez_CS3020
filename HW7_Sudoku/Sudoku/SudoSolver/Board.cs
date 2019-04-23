@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 
-namespace SudoSolver
+namespace Sudoku
 {
     public class Board
     {
@@ -12,14 +12,8 @@ namespace SudoSolver
         Area[] Columns;
         Area[] Regions;
 
-        /// <summary>
-        /// The length and width of the board (like 9 on a 9x9)
-        /// </summary>
+        
         public int M;
-
-        /// <summary>
-        /// Square root of M. This is the length and width of the regions/sub-blocks.
-        /// </summary>
         public int N;
 
         bool changeMade;
@@ -60,8 +54,7 @@ namespace SudoSolver
 
         private void initRowsColsRegions()
         {
-            // Initializes boardRows, boardCols, and boardRegions to point to the squares
-            // that go with each row, column, or region.
+            
             Rows = new Area[M];
 
             for (int row = 0; row < Rows.Length; row++)
@@ -101,7 +94,7 @@ namespace SudoSolver
         DateTime startTime;
         DateTime endTime;
 
-        // How long it took to solve the puzzle in milliseconds
+        // show time it took to solve puzzle
         public double SolveTimeMs
         {
             get
@@ -119,7 +112,6 @@ namespace SudoSolver
             startTime = DateTime.Now;
             var iterations = 0;
 
-            // Loop until logical methods stop providing results
             while (changeMade && IsSolved() == false)
             {
                 iterations += 1;
@@ -141,7 +133,7 @@ namespace SudoSolver
                     region.checkEachEmptySquare();
                 }
 
-                // Then find squares that only have one available number and set the square to that number.
+                //set numbers to squares
                 foreach (var square in board)
                 {
                     if (square.HasNumber == false && square.CountAvailable() == 1)
@@ -159,19 +151,16 @@ namespace SudoSolver
                 }
             }
             
-            // If logical methods didn't provide a solution, move on to depth-first search of solutions
             if (IsSolved() == false)
             {
                 var square = SquareWithFewestOptions;
 
-                // The board isn't solved yet and there are no valid options to try, so this board is unsolvable
                 if (square == null)
                 {
                     return false;
                 }
                 else
                 {
-                    // Try placing every number on the square that can go there. If it fails, keep trying till there are no options.
                     for (int num = 1; num <= M; num++)
                     {
                         if (square.IsBlocked(num) == false)
@@ -196,10 +185,7 @@ namespace SudoSolver
             return IsSolved();
         }
 
-        /// <summary>
-        /// Get the first blank square with the fewest options. Null if no squares are blank
-        /// or if no blank squares have any valid numbers that can go on them.
-        /// </summary>
+        
         Square SquareWithFewestOptions
         {
             get
