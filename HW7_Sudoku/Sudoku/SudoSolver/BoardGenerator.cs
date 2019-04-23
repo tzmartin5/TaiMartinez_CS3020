@@ -10,107 +10,233 @@ namespace SudoSolver
     public class BoardGenerator
     {
 
-        public static void makeBoard(int[,] board) {
+        int[,] mat;
+        int N;
+        int SRN;
+        int K;
 
-            int counter = 0;
+        public BoardGenerator(int N, int K)
+        {
+            this.N = N;
+            this.K = K;
 
+            Double SRNd = Math.Sqrt(N);
+            SRN = Convert.ToInt32(SRNd);
 
-            for (int i = 0; i < 9; i++)
-            {
-                for (int j = 0; j < 9; j++)
-                {
-                    board[i, j] = numGen();
-                    while (checkRow(board, i, j))
-                    {
-                        board[i, j] = numGen();
-                        counter++;
-
-                        if (counter == 100)
-                        {
-                            i = 0;
-                            j = 0;
-                            for (int k = 0; k < 9; k++)
-                            {
-                                for (int l = 0; l < 9; l++)
-                                {
-                                    board[k, l] = 0;
-                                }
-                            }
-                        }
-                    }
-                    counter = 0;
-                    
-   
-
-                }
-            }
-
-            //open file and output to file 
-
-            string path = @"C: \Users\tayma\Desktop\sudo - solver - master\Saved Puzzles\BoardGen.txt";
-
-            if (!File.Exists(path))
-            {
-                using (StreamWriter sw = File.CreateText(path))
-                {
-
-                    sw.Write("This is written to the file");
-
-                    for (int i = 0; i < 9; i++)
-                    {
-                        for (int j = 0; j < 9; j++)
-                        {
-                            sw.Write(board[i, j]);
-
-                        }
-                    }
-                }
-            }
-
-           
-
-
+            mat = new int[N, N];
         }
 
-       static int numGen()
+        public void fillValues()
+        {
+            fillDiagonal();
+
+            fillRemaining(0, SRN);
+
+            removeKDigits();
+        }
+
+        public void fillDiagonal()
+        {
+            for (int i = 0; i < N; i = i + SRN)
+            {
+                fillBox(i, i);
+            }
+        }
+
+
+        bool unUsedInBox(int rowStart, int colStart, int num)
+        {
+            for (int i = 0; i < SRN; i++)
+            {
+                for (int j = 0; j < SRN; j++)
+                {
+                    if (mat[rowStart + i, colStart + j] == num)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        public void fillBox(int row, int col)
+        {
+            int num;
+            for (int i = 0; i < SRN; i++)
+            {
+                for (int j = 0; j < SRN; j++)
+                {
+                    do
+                    {
+                        num = randomGenerator(N);
+                    }
+                    while (!unUsedInBox(row, col, num));
+
+                    mat[row + i, col + j] = num;
+                }
+            }
+        }
+
+
+
+
+        int randomGenerator(int num)
         {
             Random random = new Random();
+            return (random.Next(num) + 1);
 
-            int value = (random.Next(9) + 1);
-            return value;
         }
 
-       static bool checkRow(int [, ] board , int i, int j)
+
+        // Check if safe to put in cell 
+        bool CheckIfSafe(int i, int j, int num)
         {
-            for(int k = 0; k < 9; k++)
+            return (unUsedInRow(i, num) &&
+                    unUsedInCol(j, num) &&
+                    unUsedInBox(i - i % SRN, j - j % SRN, num));
+        }
+
+        // check in the row for existence 
+        bool unUsedInRow(int i, int num)
+        {
+            for (int j = 0; j < N; j++)
+                if (mat[i, j] == num)
+                    return false;
+            return true;
+        }
+
+        // check in the row for existence 
+        bool unUsedInCol(int j, int num)
+        {
+            for (int i = 0; i < N; i++)
+                if (mat[i, j] == num)
+                    return false;
+            return true;
+        }
+
+        // A recursive function to fill remaining  
+        // matrix 
+        bool fillRemaining(int i, int j)
+        {
+            //  System.out.println(i+" "+j); 
+            if (j >= N && i < N - 1)
             {
-                if(j == k)
+                i = i + 1;
+                j = 0;
+            }
+            if (i >= N && j >= N)
+                return true;
+
+            if (i < SRN)
+            {
+                if (j < SRN)
+                    j = SRN;
+            }
+            else if (i < N - SRN)
+            {
+                if (j == (int)(i / SRN) * SRN)
+                    j = j + SRN;
+            }
+            else
+            {
+                if (j == N - SRN)
                 {
-                    continue;
-                } else if(board[i,j] == board[i, k])
-                {
-                    return true;
+                    i = i + 1;
+                    j = 0;
+                    if (i >= N)
+                        return true;
                 }
             }
 
-            for (int k = 0; k < 9; k++)
+            for (int num = 1; num <= N; num++)
             {
-                if (i == k)
+                if (CheckIfSafe(i, j, num))
                 {
-                    continue;
-                }
-                else if (board[i, j] == board[k, i])
-                {
-                    return true;
+                    mat[i, j] = num;
+                    if (fillRemaining(i, j + 1))
+                        return true;
+
+                    mat[i, j] = 0;
                 }
             }
-
             return false;
+        }
 
+        // Remove the K no. of digits to 
+        // complete game 
+        public void removeKDigits()
+        {
+            int count = K;
+            while (count != 0)
+            {
+                int cellId = randomGenerator(N * N);
+
+                // System.out.println(cellId); 
+                // extract coordinates i  and j 
+                int i = (cellId / N);
+                int j = cellId % 9;
+                if (j != 0)
+                    j = j - 1;
+
+                // System.out.println(i + " " + j);
+                if (mat[i, j] != 0)
+                {
+                    count--;
+                    mat[i, j] = 0;
+                }
+            }
+        }
+
+        // Print sudoku 
+        public void printSudoku()
+        {
+
+
+
+
+            using (StreamWriter file =
+            new StreamWriter(@"C:\Users\tayma\Documents\TaiMartinez_CS3020\HW7_Sudoku\Saved Puzzles\BoardGen.txt", true))
+            {
+                for (int i = 0; i < 9; i++)
+                {
+                    for (int j = 0; j < 9; j++)
+                    {
+                        if(mat[i,j] == 0)
+                        {
+                            file.Write(".");
+                        }
+                        else
+                        {
+                            file.Write(mat[i, j]);
+
+                        }
+
+                    }
+                }
+            }
         }
 
 
+
+        //convert from string to int
+        static int IntParse(string Input)
+        {
+            int Value = 0;
+            bool Loop = true;
+
+            Loop = int.TryParse(Input, out Value);
+
+            while (!(Loop))
+            {
+                Console.WriteLine("Invalid Input, please try again: ");
+                Input = Console.ReadLine();
+                Loop = int.TryParse(Input, out Value);
+            }
+
+            return Value;
+        }
 
 
     }
 }
+

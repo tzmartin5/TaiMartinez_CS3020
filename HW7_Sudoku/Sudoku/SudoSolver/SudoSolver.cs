@@ -162,12 +162,13 @@ namespace SudoSolver
 
         private void loadTestBoardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int[,] board = new int[9, 9];
 
-          //  BoardGenerator.makeBoard(board);
+            int N = 9, K = 20;
+            BoardGenerator sudoku = new BoardGenerator(N, K);
+            sudoku.fillValues();
+            sudoku.printSudoku();
 
-
-            loadBoardFromFile(@"..\..\..\..\Saved Puzzles\HardestBoard.sudo");
+            loadBoardFromFile(@"..\..\..\..\Saved Puzzles\BoardGen.txt");
         }
 
 
