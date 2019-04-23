@@ -51,12 +51,6 @@
   <ItemGroup>
     <Compile Include="BoardGenerator.cs" />
     <Compile Include="Combinations.cs" />
-    <Compile Include="NewBoardDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="NewBoardDialog.Designer.cs">
-      <DependentUpon>NewBoardDialog.cs</DependentUpon>
-    </Compile>
     <Compile Include="SudoSolver.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,9 +62,6 @@
     <Compile Include="Area.cs" />
     <Compile Include="Board.cs" />
     <Compile Include="Square.cs" />
-    <EmbeddedResource Include="NewBoardDialog.resx">
-      <DependentUpon>NewBoardDialog.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="SudoSolver.resx">
       <DependentUpon>SudoSolver.cs</DependentUpon>
     </EmbeddedResource>

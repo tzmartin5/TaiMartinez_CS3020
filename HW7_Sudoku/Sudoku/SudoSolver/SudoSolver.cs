@@ -170,22 +170,10 @@ namespace SudoSolver
             loadBoardFromFile(@"..\..\..\..\Saved Puzzles\HardestBoard.sudo");
         }
 
-        private void newToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var newBoardDialog = new NewBoardDialog();
-            if (newBoardDialog.ShowDialog() == DialogResult.OK)
-            {
-                var board = new Board(newBoardDialog.ChosenSize);
-                setTextFromBoard(board);
-            }
-        }
 
         private void loadPuzzleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(ofdOpenExisting.ShowDialog() == DialogResult.OK)
-            {
-                loadBoardFromFile(ofdOpenExisting.FileName);
-            }
+           loadBoardFromFile(@"C:\Users\tayma\Documents\TaiMartinez_CS3020\HW7_Sudoku\Saved Puzzles\examples.txt");
         }
 
         private void loadBoardFromFile(string fileName)
@@ -193,27 +181,31 @@ namespace SudoSolver
             using (var reader = new StreamReader(fileName))
             {
                 // Read size number - square root of number of rows and columns (3 in a 9x9)
-                var n = Convert.ToInt32(reader.ReadLine());
+                var n = 3;
                 var m = n*n;
 
                 var board = new Board(n);
-
-                for (var i = 0; i < m; i++)
-                {
-                    var rowText = reader.ReadLine();
-
-                    var split = rowText.Split('|');
-
-                    for (var j = 0; j < m; j++)
-                    {
-                        try
-                        {
-                            board[i, j].Number = Convert.ToInt32(split[j].Trim());
-                        }
-                        catch (FormatException) { } // Ignore format exception for blanks
-                    }
-                }
                 
+                string rowText = reader.ReadLine();
+                char[] charText = rowText.ToCharArray();
+
+                for (var i = 0; i < 9; i++)
+                {
+                    Console.WriteLine();
+                    for (int j = 0; j < 9; j++)
+                    {
+          
+                        if (charText[(i*9) + j] != '.')
+                        {
+
+                            int x = IntParse((charText[(i * 9) + j]).ToString());
+                            board[i, j].Number = IntParse((charText[(i * 9) + j]).ToString());
+                            
+                        }
+                       
+                    }
+                }         
+
                 setTextFromBoard(board);
             }
         }
@@ -222,5 +214,26 @@ namespace SudoSolver
         {
             Close();
         }
+
+        //convert from string to int
+        static int IntParse(string Input)
+        {
+            int Value = 0;
+            bool Loop = true;
+
+            Loop = int.TryParse(Input, out Value);
+
+            while (!(Loop))
+            {
+                Console.WriteLine("Invalid Input, please try again: ");
+                Input = Console.ReadLine();
+                Loop = int.TryParse(Input, out Value);
+            }
+
+            return Value;
+        }
+
+
+
     }
 }

@@ -141,7 +141,7 @@ namespace SudoSolver
         /// <param name="num">Number between 1 and M inclusive.</param>
         public void Block(int num)
         {
-            isAvailable[num - 1] = false;
+            isAvailable[num- 1] = false;
         }
 
         public override string ToString()
