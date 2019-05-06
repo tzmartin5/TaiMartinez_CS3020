@@ -16,11 +16,9 @@ namespace HW8_TicTacToe
     {
         TcpClient connection;
 
-
         bool turn = true; //true = x turn, false = y turn
         int turnCount = 0;
 
-        bool clicked = false;
 
         public Form1()
         {
@@ -38,11 +36,11 @@ namespace HW8_TicTacToe
             }));
         }
 
-        private void SendButton(Control s)
+        private void SendButton(Button s)
         {
             this.Invoke(new MethodInvoker(delegate
             {
-                if (turn) {
+                if ((!(turnCount % 2 == 0))) {
                     s.Text = "X";
                 }
                 else {
@@ -81,9 +79,7 @@ namespace HW8_TicTacToe
         private void ListenForPacket(TcpClient singleConnection)
         {
 
-            Button[] buttons = { A1, A2, A3, B1, B2, B3, C1, C2, C3 };
-            int b = 0;
-
+            Button[] buttons = { A1, B1, C1, A2, B2, C2, A3, B3, C3 };
 
             NetworkStream stream = singleConnection.GetStream();
             while (true)
@@ -96,14 +92,40 @@ namespace HW8_TicTacToe
                     AddToMessageBox(result);
 
 
-                    for (int i = 0; i < 9; i++)
+                    switch (result)
                     {
-                        if(clicked == true)
-                        {
-                            b = i;
-                        }
+                        case "A1":
+                            SendButton(A1);
+                            break;
+                        case "B1":
+                            SendButton(B1);
+                            break;
+                        case "C1":
+                            SendButton(C1);
+                            break;
+                        case "A2":
+                            SendButton(A2);
+                            break;
+                        case "B2":
+                            SendButton(B2);
+                            break;
+                        case "C2":
+                            SendButton(C2);
+                            break;
+                        case "A3":
+                            SendButton(A3);
+                            break;
+                        case "B3":
+                            SendButton(B3);
+                            break;
+                        case "C3":
+                            SendButton(C3);
+                            break;
                     }
-                    SendButton(buttons[b]);
+
+
+
+             
                 }
             }
         }
@@ -121,28 +143,36 @@ namespace HW8_TicTacToe
             Application.Exit();
         }
 
-        private void Button_Click(object sender, EventArgs e)
-        {
+
+
+
+            private void Button_Click(object sender, EventArgs e)
+            {
             Button b = (Button)sender;
 
-            if (turn)
+            if (!(turnCount%2 == 0))
             {
                 b.Text = "X";
-                clicked = true;
 
-                SendMessage(connection, "X");
+                SendButton(b);
+                SendMessage(connection, b.Name);
+
+
+
 
                 // AddToMessageBox("Player Two's Turn");
             }
             else
             {
                 b.Text = "O";
-                clicked = true;
+                SendButton(b);
 
-                SendMessage(connection, "O");
+                SendMessage(connection, b.Name);
 
                 //  AddToMessageBox("Player One's Turn");
             }
+
+           
 
             turn = !turn;
             b.Enabled = false;
