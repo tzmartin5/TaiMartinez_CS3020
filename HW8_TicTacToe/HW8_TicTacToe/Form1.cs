@@ -20,6 +20,7 @@ namespace HW8_TicTacToe
         bool turn = true; //true = x turn, false = y turn
         int turnCount = 0;
 
+        bool clicked = false;
 
         public Form1()
         {
@@ -79,6 +80,11 @@ namespace HW8_TicTacToe
 
         private void ListenForPacket(TcpClient singleConnection)
         {
+
+            Button[] buttons = { A1, A2, A3, B1, B2, B3, C1, C2, C3 };
+            int b = 0;
+
+
             NetworkStream stream = singleConnection.GetStream();
             while (true)
             {
@@ -90,16 +96,18 @@ namespace HW8_TicTacToe
                     AddToMessageBox(result);
 
 
-                  //  if (A1.Text == "X")
-                    //{
-                        SendButton(A1);
-                   // }
-                    
+                    for (int i = 0; i < 9; i++)
+                    {
+                        if(clicked == true)
+                        {
+                            b = i;
+                        }
+                    }
+                    SendButton(buttons[b]);
                 }
-
-
             }
         }
+      
 
         private void SendMessage(TcpClient singleConnection, string s)
         {
@@ -107,7 +115,6 @@ namespace HW8_TicTacToe
             singleConnection.GetStream().Write(bytesToSend, 0, bytesToSend.Length);
         }
 
-       
 
         private void Button_Exit_Click(object sender, EventArgs e)
         {
@@ -121,6 +128,8 @@ namespace HW8_TicTacToe
             if (turn)
             {
                 b.Text = "X";
+                clicked = true;
+
                 SendMessage(connection, "X");
 
                 // AddToMessageBox("Player Two's Turn");
@@ -128,6 +137,8 @@ namespace HW8_TicTacToe
             else
             {
                 b.Text = "O";
+                clicked = true;
+
                 SendMessage(connection, "O");
 
                 //  AddToMessageBox("Player One's Turn");
