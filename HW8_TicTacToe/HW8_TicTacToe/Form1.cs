@@ -37,6 +37,20 @@ namespace HW8_TicTacToe
             }));
         }
 
+        private void SendButton(Control s)
+        {
+            this.Invoke(new MethodInvoker(delegate
+            {
+                if (turn) {
+                    s.Text = "X";
+                }
+                else {
+                    s.Text = "O";
+                }
+
+            }));
+        }
+
         private async void Button_OpenConnection_Click(object sender, EventArgs e)
         {
             try
@@ -74,7 +88,16 @@ namespace HW8_TicTacToe
                 if (result != "")
                 {
                     AddToMessageBox(result);
+
+
+                  //  if (A1.Text == "X")
+                    //{
+                        SendButton(A1);
+                   // }
+                    
                 }
+
+
             }
         }
 
@@ -84,13 +107,7 @@ namespace HW8_TicTacToe
             singleConnection.GetStream().Write(bytesToSend, 0, bytesToSend.Length);
         }
 
-        private void SendButton(TcpClient singleConnection, Button s)
-        {
-            byte[] bytesToSend = ASCIIEncoding.ASCII.GetBytes(s.Text);
-           singleConnection.GetStream().Write(bytesToSend, 0, bytesToSend.Length);
-        }
-
-
+       
 
         private void Button_Exit_Click(object sender, EventArgs e)
         {
@@ -103,37 +120,17 @@ namespace HW8_TicTacToe
 
             if (turn)
             {
-
-
-
-                NetworkStream nwStream = connection.GetStream();
-                byte[] bytesToSend = ASCIIEncoding.ASCII.GetBytes(b.Text = "X");
-
-                //---send the text---
-                nwStream.Write(bytesToSend, 0, bytesToSend.Length);
-
-
-
-                //b.Invoke( (MethodInvoker) (delegate
-                //{
-                //    b.Text = "X";
-
-                //    connection.GetType();
-                //    }));
-
-
-                //  SendButton(connection, A1);
-
-
-
+                b.Text = "X";
+                SendMessage(connection, "X");
 
                 // AddToMessageBox("Player Two's Turn");
             }
             else
             {
                 b.Text = "O";
-               SendButton(connection, b);
-              //  AddToMessageBox("Player One's Turn");
+                SendMessage(connection, "O");
+
+                //  AddToMessageBox("Player One's Turn");
             }
 
             turn = !turn;
