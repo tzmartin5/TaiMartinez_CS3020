@@ -14,6 +14,7 @@ namespace HW8_TicTacToe
 {
     public partial class Form1 : Form
     {
+
         TcpClient connection;
 
         bool turn = true; //true = x turn, false = y turn
@@ -40,11 +41,15 @@ namespace HW8_TicTacToe
         {
             this.Invoke(new MethodInvoker(delegate
             {
-                if ((!(turnCount % 2 == 0))) {
+                if (turn) {
                     s.Text = "X";
+                    s.Enabled = false;
+                    turn = false;
                 }
                 else {
                     s.Text = "O";
+                    s.Enabled = false;
+                    turn = true;
                 }
 
             }));
@@ -124,9 +129,8 @@ namespace HW8_TicTacToe
                     }
 
 
-
-             
                 }
+
             }
         }
       
@@ -146,36 +150,16 @@ namespace HW8_TicTacToe
 
 
 
-            private void Button_Click(object sender, EventArgs e)
-            {
+        private void Button_Click(object sender, EventArgs e)
+        {
             Button b = (Button)sender;
 
-            if (!(turnCount%2 == 0))
-            {
-                b.Text = "X";
-
-                SendButton(b);
-                SendMessage(connection, b.Name);
+            SendButton(b);
+            SendMessage(connection, b.Name);
 
 
-
-
-                // AddToMessageBox("Player Two's Turn");
-            }
-            else
-            {
-                b.Text = "O";
-                SendButton(b);
-
-                SendMessage(connection, b.Name);
-
-                //  AddToMessageBox("Player One's Turn");
-            }
-
-           
-
-            turn = !turn;
-            b.Enabled = false;
+            AddToMessageBox("Opponents Turn");
+          
             turnCount++;
 
             checkForWinner();
@@ -247,9 +231,6 @@ namespace HW8_TicTacToe
                     MessageBox.Show("It's a draw :(");
                 }
             }
-
-            
-
 
         }
 
