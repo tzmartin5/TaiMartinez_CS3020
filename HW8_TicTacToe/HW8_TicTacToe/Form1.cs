@@ -42,11 +42,13 @@ namespace HW8_TicTacToe
             {
                 if (turn) {
                     s.Text = "X";
+                    s.Font = new Font("Microsoft Sans Serif", 30);
                     s.Enabled = false;
                     turn = false;
                 }
                 else {
                     s.Text = "O";
+                    s.Font = new Font("Microsoft Sans Serif", 30);
                     s.Enabled = false;
                     turn = true;
                 }
@@ -136,6 +138,7 @@ namespace HW8_TicTacToe
         private void Button_Click(object sender, EventArgs e)
         {
             Button b = (Button)sender;
+            b.Font = new Font("Microsoft Sans Serif", 30);
 
             SendButton(b);
             SendMessage(connection, b.Name);

@@ -113,7 +113,7 @@
             this.A3.Location = new System.Drawing.Point(1056, 31);
             this.A3.Name = "A3";
             this.A3.Size = new System.Drawing.Size(221, 212);
-            this.A3.TabIndex = 8;
+            this.A3.TabIndex = 7;
             this.A3.UseVisualStyleBackColor = true;
             this.A3.Click += new System.EventHandler(this.Button_Click);
             // 
