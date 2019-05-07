@@ -14,7 +14,6 @@ namespace HW8_TicTacToe
 {
     public partial class Form1 : Form
     {
-
         TcpClient connection;
 
         bool turn = true; //true = x turn, false = y turn
@@ -76,14 +75,8 @@ namespace HW8_TicTacToe
             await Task.Factory.StartNew(() => ListenForPacket(connection));
         }
 
-        private void Button_SendPing_Click(object sender, EventArgs e)
-        {
-            SendMessage(connection, DateTime.Now.ToLongTimeString());
-        }
-
         private void ListenForPacket(TcpClient singleConnection)
         {
-
             Button[] buttons = { A1, B1, C1, A2, B2, C2, A3, B3, C3 };
 
             NetworkStream stream = singleConnection.GetStream();
@@ -127,8 +120,6 @@ namespace HW8_TicTacToe
                             SendButton(C3);
                             break;
                     }
-
-
                 }
 
             }
@@ -142,28 +133,17 @@ namespace HW8_TicTacToe
         }
 
 
-        private void Button_Exit_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-
-
-
         private void Button_Click(object sender, EventArgs e)
         {
             Button b = (Button)sender;
 
             SendButton(b);
             SendMessage(connection, b.Name);
-
-
             AddToMessageBox("Opponents Turn");
-          
+
             turnCount++;
 
             checkForWinner();
-
         }
 
 
@@ -223,17 +203,17 @@ namespace HW8_TicTacToe
                     playerWin = "Player One";
 
                 MessageBox.Show(playerWin + " wins!");
+                AddToMessageBox(playerWin + " wins!");
             }
             else
             {
                 if(turnCount == 9)
                 {
                     MessageBox.Show("It's a draw :(");
+                    AddToMessageBox("It's a draw :(");
                 }
             }
-
         }
-
 
         //disables all buttons when there is a winner
         private void disableButtons()
@@ -248,18 +228,19 @@ namespace HW8_TicTacToe
            }catch { }
         }
 
+        //beginning of error handling
+        void Form_FormClosing(object sender, FormClosingEventArgs e)
+        {
 
+            Socket s = (Socket)sender;
 
-
-
-
-
-
-
-
-
-
-
-
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                s.Shutdown(SocketShutdown.Both);
+                s.Close();
+                MessageBox.Show("Your Opponent has Disconnected");
+            }
+     
+        }
     }
 }

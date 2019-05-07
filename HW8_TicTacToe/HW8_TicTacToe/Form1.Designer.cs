@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.Button_OpenConnection = new System.Windows.Forms.Button();
-            this.Button_SendPing = new System.Windows.Forms.Button();
             this.RichTextBox_Message = new System.Windows.Forms.RichTextBox();
             this.Label_LocalIP = new System.Windows.Forms.Label();
             this.TextBox_InputIP = new System.Windows.Forms.TextBox();
@@ -43,9 +42,6 @@
             this.C1 = new System.Windows.Forms.Button();
             this.C2 = new System.Windows.Forms.Button();
             this.C3 = new System.Windows.Forms.Button();
-            this.TextBox_Turn = new System.Windows.Forms.TextBox();
-            this.Label_Turn = new System.Windows.Forms.Label();
-            this.Button_Exit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Button_OpenConnection
@@ -59,24 +55,13 @@
             this.Button_OpenConnection.UseVisualStyleBackColor = true;
             this.Button_OpenConnection.Click += new System.EventHandler(this.Button_OpenConnection_Click);
             // 
-            // Button_SendPing
-            // 
-            this.Button_SendPing.Location = new System.Drawing.Point(32, 100);
-            this.Button_SendPing.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
-            this.Button_SendPing.Name = "Button_SendPing";
-            this.Button_SendPing.Size = new System.Drawing.Size(403, 55);
-            this.Button_SendPing.TabIndex = 1;
-            this.Button_SendPing.Text = "Send Ping";
-            this.Button_SendPing.UseVisualStyleBackColor = true;
-            this.Button_SendPing.Click += new System.EventHandler(this.Button_SendPing_Click);
-            // 
             // RichTextBox_Message
             // 
             this.RichTextBox_Message.Enabled = false;
-            this.RichTextBox_Message.Location = new System.Drawing.Point(32, 172);
+            this.RichTextBox_Message.Location = new System.Drawing.Point(32, 100);
             this.RichTextBox_Message.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.RichTextBox_Message.Name = "RichTextBox_Message";
-            this.RichTextBox_Message.Size = new System.Drawing.Size(396, 324);
+            this.RichTextBox_Message.Size = new System.Drawing.Size(502, 396);
             this.RichTextBox_Message.TabIndex = 2;
             this.RichTextBox_Message.Text = "";
             // 
@@ -186,42 +171,12 @@
             this.C3.UseVisualStyleBackColor = true;
             this.C3.Click += new System.EventHandler(this.Button_Click);
             // 
-            // TextBox_Turn
-            // 
-            this.TextBox_Turn.Location = new System.Drawing.Point(1332, 119);
-            this.TextBox_Turn.Multiline = true;
-            this.TextBox_Turn.Name = "TextBox_Turn";
-            this.TextBox_Turn.Size = new System.Drawing.Size(184, 109);
-            this.TextBox_Turn.TabIndex = 15;
-            // 
-            // Label_Turn
-            // 
-            this.Label_Turn.AutoSize = true;
-            this.Label_Turn.Location = new System.Drawing.Point(1326, 84);
-            this.Label_Turn.Name = "Label_Turn";
-            this.Label_Turn.Size = new System.Drawing.Size(81, 32);
-            this.Label_Turn.TabIndex = 16;
-            this.Label_Turn.Text = "Turn:";
-            // 
-            // Button_Exit
-            // 
-            this.Button_Exit.Location = new System.Drawing.Point(309, 523);
-            this.Button_Exit.Name = "Button_Exit";
-            this.Button_Exit.Size = new System.Drawing.Size(204, 60);
-            this.Button_Exit.TabIndex = 17;
-            this.Button_Exit.Text = "Exit Program";
-            this.Button_Exit.UseVisualStyleBackColor = true;
-            this.Button_Exit.Click += new System.EventHandler(this.Button_Exit_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1559, 793);
-            this.Controls.Add(this.Button_Exit);
-            this.Controls.Add(this.Label_Turn);
-            this.Controls.Add(this.TextBox_Turn);
+            this.ClientSize = new System.Drawing.Size(1300, 793);
             this.Controls.Add(this.C3);
             this.Controls.Add(this.C2);
             this.Controls.Add(this.C1);
@@ -235,7 +190,6 @@
             this.Controls.Add(this.TextBox_InputIP);
             this.Controls.Add(this.Label_LocalIP);
             this.Controls.Add(this.RichTextBox_Message);
-            this.Controls.Add(this.Button_SendPing);
             this.Controls.Add(this.Button_OpenConnection);
             this.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.Name = "Form1";
@@ -248,7 +202,6 @@
         #endregion
 
         private System.Windows.Forms.Button Button_OpenConnection;
-        private System.Windows.Forms.Button Button_SendPing;
         private System.Windows.Forms.RichTextBox RichTextBox_Message;
         private System.Windows.Forms.Label Label_LocalIP;
         private System.Windows.Forms.TextBox TextBox_InputIP;
@@ -262,8 +215,6 @@
         private System.Windows.Forms.Button C1;
         private System.Windows.Forms.Button C2;
         private System.Windows.Forms.Button C3;
-        private System.Windows.Forms.TextBox TextBox_Turn;
-        private System.Windows.Forms.Label Label_Turn;
         private System.Windows.Forms.Button Button_Exit;
     }
 }
