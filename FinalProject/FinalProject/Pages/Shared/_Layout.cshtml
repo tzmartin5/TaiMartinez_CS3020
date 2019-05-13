@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Final_WPHS_Track</title>
+    <title>@ViewData["Title"] - FinalProject</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -26,16 +26,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-page="/Index" class="navbar-brand">Final_WPHS_Track</a>
+                <a asp-page="/Index" class="navbar-brand">FinalProject</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-page="/Index">Home</a></li>
                     <li><a asp-page="/About">About</a></li>
-                    <li><a asp-page="/Students">Students</a></li>
-                    <li><a asp-page="/Coaches">Coaches</a></li>
-                    <li><a asp-page="/Parents">Parents</a></li>
-
+                    <li><a asp-page="/Students/Create">Students</a></li>
                 </ul>
             </div>
         </div>
@@ -47,7 +44,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2019 - Final_WPHS_Track</p>
+            <p>&copy; 2019 - FinalProject</p>
         </footer>
     </div>
 
