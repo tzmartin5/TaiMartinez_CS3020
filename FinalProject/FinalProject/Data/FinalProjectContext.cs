@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using FinalProject.Models;
 
 namespace FinalProject.Models
 {
@@ -15,5 +16,6 @@ namespace FinalProject.Models
 
         public DbSet<FinalProject.Models.Student> Student { get; set; }
         public DbSet<FinalProject.Models.Schedule> Schedule { get; set; }
+        public DbSet<FinalProject.Models.Result> Results { get; set; }
     }
 }

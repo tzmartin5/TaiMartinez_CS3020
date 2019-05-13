@@ -36,6 +36,32 @@ namespace FinalProject.Models
                 }
 
 
+
+                // Look for any students.
+                if (context.Results.Any())
+                {
+                    return;   // DB has been seeded
+                }
+
+                context.Results.AddRange(
+                    new Result
+                    {
+                        MeetName = "Example",
+                        Athlete = "John Doe",
+                        Event = "Long Jump",
+                        Mark = "20'1"
+                    }
+                );
+                context.SaveChanges();
+
+                if (context.Results.Any())
+                {
+                    return;   // DB has been seeded.
+                }
+
+
+
+
             }
         }
     }
