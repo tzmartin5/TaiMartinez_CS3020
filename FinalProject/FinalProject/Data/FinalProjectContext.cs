@@ -14,5 +14,6 @@ namespace FinalProject.Models
         }
 
         public DbSet<FinalProject.Models.Student> Student { get; set; }
+        public DbSet<FinalProject.Models.Schedule> Schedule { get; set; }
     }
 }
