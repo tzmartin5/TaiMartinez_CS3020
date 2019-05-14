@@ -5,8 +5,14 @@
     ViewData["Title"] = "Schedules";
 }
 
-<h2>Schedules</h2>
-<hr />
+<div style="text-align:center">
+
+    <h1 style="background-color:darkseagreen">Schedules</h1>
+    <hr />
+
+    <p>This page is where coaches upload schedules</p>
+</div>
+
 
 <h3>Upload Schedules</h3>
 <div class="row">
@@ -44,22 +50,23 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Schedule) {
-        <tr>
-            <td>
-                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UploadDT)
-            </td>
-            <td class="text-center">
-                @Html.DisplayFor(modelItem => item.PublicScheduleSize)
-            </td>
-        </tr>
-    }
+        @foreach (var item in Model.Schedule)
+        {
+            <tr>
+                <td>
+                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UploadDT)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.PublicScheduleSize)
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 
